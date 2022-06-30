@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const defaultFont = 'NeoDunggeunmo';
+const defaultFont = "NeoDunggeunmo";
 
 function Login() {
     return (
@@ -17,20 +17,19 @@ function Login() {
                     <Button>가입하러 가기</Button>
                 </Link>
                 <Link to="/makecake">
-                <Button>로그인</Button>
+                    <Button>로그인</Button>
                 </Link>
             </Buttons>
         </>
-    )
+    );
 }
 
 const Logo = styled.div`
-    color: #AD8B73;
+    color: #ad8b73;
     font-size: 40px;
     margin-left: 40px;
     margin-top: 27px;
-`
-
+`;
 
 const Title = styled.div`
     font-size: 44px;
@@ -38,13 +37,13 @@ const Title = styled.div`
     justify-content: center;
     margin-top: 70px;
     margin-bottom: 100px;
-`
+`;
 
 const Inputs = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`
+`;
 
 const Input = styled.input`
     font-family: ${defaultFont};
@@ -52,31 +51,31 @@ const Input = styled.input`
     height: 60px;
     border: none;
     border-radius: 20px;
-    background-color: #ECDBC5;
-   ::placeholder {
-        color: #AD8B73;
+    background-color: #ecdbc5;
+    ::placeholder {
+        color: #ad8b73;
         font-size: 20px;
-   }
-   padding-left: 20px;
-   margin-bottom: 40px;
-   outline: none;
-   font-size: 24px;
-`
+    }
+    padding-left: 20px;
+    margin-bottom: 40px;
+    outline: none;
+    font-size: 24px;
+`;
 const Buttons = styled.div`
     display: flex;
     justify-content: center;
-`
+`;
 
 const Button = styled.button`
     font-family: ${defaultFont};
     font-size: 30px;
     width: 340px;
     height: 72px;
-    background-color: #ECDBC5;
+    background-color: #ecdbc5;
     border: none;
     border-radius: 20px;
     margin-left: 60px;
     margin-right: 60px;
-`
+`;
 
 export default Login;
