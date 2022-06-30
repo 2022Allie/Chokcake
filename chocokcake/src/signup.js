@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const defaultFont = 'NeoDunggeunmo';
+const defaultFont = "NeoDunggeunmo";
 
 function Signup() {
     return (
@@ -16,34 +17,36 @@ function Signup() {
                 <Input type="password" placeholder="비밀번호를 한 번 더 입력해주세요."></Input>
                 <Input placeholder="이름을 입력해주세요."></Input>
                 <Input placeholder="생일을 입력해주세요. ex) 07-19"></Input>
-                <SignupButton>가입하기</SignupButton>
+                <Link to="/choosepage">
+                    <SignupButton>가입하기</SignupButton>
+                </Link>
             </Inputs>
         </>
-    )
+    );
 }
 
 const Logo = styled.div`
-    color: #AD8B73;
+    color: #ad8b73;
     font-size: 40px;
     margin-left: 40px;
     margin-top: 27px;
-`
+`;
 const Title = styled.div`
     font-size: 44px;
     display: flex;
     justify-content: center;
     margin-top: 40px;
-`
+`;
 const Inputs = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-`
+`;
 const ID = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 40px;
-`
+`;
 
 const IdInput = styled.input`
     padding-left: 20px;
@@ -51,18 +54,18 @@ const IdInput = styled.input`
     height: 60px;
     background-color: #ecdbc5;
     ::placeholder {
-        color: #AD8B73;
+        color: #ad8b73;
         font-size: 20px;
         font-family: ${defaultFont};
-   }
-   border: none;
-   outline: none;
-   border-radius: 20px;
-   margin-right: 40px;
-   margin-bottom: 40px;
-   font-family: ${defaultFont};
-   font-size: 20px;
-`
+    }
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    font-family: ${defaultFont};
+    font-size: 20px;
+`;
 const IdButton = styled.button`
     width: 130px;
     height: 62px;
@@ -71,8 +74,8 @@ const IdButton = styled.button`
     border-radius: 20px;
     font-family: ${defaultFont};
     font-size: 20px;
-    color: #AD8B73;
-`
+    color: #ad8b73;
+`;
 
 const Input = styled.input`
     width: 780px;
@@ -83,22 +86,22 @@ const Input = styled.input`
     border-radius: 20px;
     outline: none;
     ::placeholder {
-        color: #AD8B73;
+        color: #ad8b73;
         font-size: 20px;
         font-family: ${defaultFont};
-   }
-   margin-bottom: 40px;
-   font-family: ${defaultFont};
-   font-size: 20px;
-`
+    }
+    margin-bottom: 40px;
+    font-family: ${defaultFont};
+    font-size: 20px;
+`;
 const SignupButton = styled.button`
     width: 300px;
     height: 72px;
-    background-color: #ECDBC5;
+    background-color: #ecdbc5;
     font-family: ${defaultFont};
     font-size: 35px;
     border: none;
     border-radius: 20px;
-`
+`;
 
 export default Signup;
