@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import chococake from "./img/chococake.png";
 import React, { useState } from "react";
+import xcandle from "./img/xcandle2.png";
 import { click } from "@testing-library/user-event/dist/click";
 
 function LetterOwnerPage() {
@@ -30,6 +31,14 @@ function LetterOwnerPage() {
                 <Writer>편지 쓴 사람</Writer>
             </WriterDiv>
             <WriterName></WriterName>
+            <Xcandle4 src={xcandle}></Xcandle4>
+            <Xcandle1 src={xcandle}></Xcandle1>
+            <Xcandle2 src={xcandle}></Xcandle2>
+            <Xcandle3 src={xcandle}></Xcandle3>
+            <Xcandle5 src={xcandle}></Xcandle5>
+            <Xcandle6 src={xcandle}></Xcandle6>
+            <Xcandle7 src={xcandle}></Xcandle7>
+            <Xcandle8 src={xcandle}></Xcandle8>
             <ImgDiv>
                 <Birth>탄생일 : 7월 19일</Birth>
                 <Center>
@@ -173,4 +182,62 @@ const SendCake = styled.button`
     border-radius: 10px;
     font-size: 18px;
     font-family: "NeoDunggeunmo";
+`;
+
+const Xcandle1 = styled.img`
+    position: absolute;
+    width: 30px;
+    height: 110px;
+    margin-left: 1160px;
+    margin-top: 265px;
+`;
+const Xcandle2 = styled.img`
+    position: absolute;
+    width: 30px;
+    height: 110px;
+    margin-left: 1050px;
+    margin-top: 295px;
+`;
+const Xcandle3 = styled.img`
+    position: absolute;
+    width: 30px;
+    height: 110px;
+    margin-left: 830px;
+    margin-top: 295px;
+`;
+const Xcandle4 = styled.img`
+    position: absolute;
+    width: 30px;
+    height: 110px;
+    margin-left: 745px;
+    margin-top: 265px;
+`;
+
+const Xcandle5 = styled.img`
+    position: absolute;
+    width: 30px;
+    height: 110px;
+    margin-left: 805px;
+    margin-top: 60px;
+`;
+const Xcandle6 = styled.img`
+    position: absolute;
+    width: 30px;
+    height: 110px;
+    margin-left: 900px;
+    margin-top: 40px;
+`;
+const Xcandle7 = styled.img`
+    position: absolute;
+    width: 30px;
+    height: 110px;
+    margin-left: 1000px;
+    margin-top: 40px;
+`;
+const Xcandle8 = styled.img`
+    position: absolute;
+    width: 30px;
+    height: 110px;
+    margin-left: 1090px;
+    margin-top: 60px;
 `;
