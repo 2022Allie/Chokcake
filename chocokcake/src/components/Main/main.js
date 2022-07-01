@@ -2,12 +2,12 @@ import styled from "styled-components";
 import MainCake from "../../img/MainLogo.png";
 import { Link } from "react-router-dom";
 import * as S from "./styles";
+import Menu from "../../menu";
 
 function Main() {
     return (
-        <>
+        <S.Container>
             <S.Cake>
-                {" "}
                 <img src={MainCake}></img>
             </S.Cake>
             <S.Logo>초'콕'케이크</S.Logo>
@@ -16,7 +16,7 @@ function Main() {
                     <S.MakeCake>초'콕'케이크 만들러가기</S.MakeCake>
                 </Link>
             </S.Button>
-        </>
+        </S.Container>
     );
 }
 

@@ -2,6 +2,13 @@ import styled from "styled-components";
 
 const defaultFont = "NeoDunggeunmo";
 
+export const Container = styled.div`
+    max-width: 100vw;
+    width: 100vw;
+    min-width: 100vw;
+    overflow-x: hidden;
+`;
+
 export const Cake = styled.div`
     margin-top: 30px;
     display: flex;
