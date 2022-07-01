@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import menuimg from "./img/Menu.png"
+import menuimg from "../../img/Menu.png"
 import MyAccount from "./myAccount";
 import Developer from "./developer";
 
