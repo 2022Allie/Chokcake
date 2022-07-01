@@ -37,7 +37,9 @@ function ChoosePage() {
                     <RightButton onClick={right}>▶</RightButton>
                 </Center>
                 <CakeNumber>{number}/4</CakeNumber>
-                <Button>이 케이크로 하기</Button>
+                <Link to="/letterOwner">
+                    <Button>이 케이크로 하기</Button>
+                </Link>
             </ImgDiv>
         </Background>
     );

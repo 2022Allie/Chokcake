@@ -16,7 +16,7 @@ function Login() {
                 <Link to="/signup">
                     <Button>가입하러 가기</Button>
                 </Link>
-                <Link to="/makecake">
+                <Link to="/choosePage">
                     <Button>로그인</Button>
                 </Link>
             </Buttons>
