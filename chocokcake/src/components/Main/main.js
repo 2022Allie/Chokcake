@@ -2,7 +2,6 @@ import styled from "styled-components";
 import MainCake from "../../img/MainLogo.png";
 import { Link } from "react-router-dom";
 import * as S from "./styles";
-import Menu from "../../menu";
 
 function Main() {
     return (
