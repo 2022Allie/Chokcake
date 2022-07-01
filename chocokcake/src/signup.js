@@ -17,7 +17,7 @@ function Signup() {
                 <Input type="password" placeholder="비밀번호를 한 번 더 입력해주세요."></Input>
                 <Input placeholder="이름을 입력해주세요."></Input>
                 <Input placeholder="생일을 입력해주세요. ex) 07-19"></Input>
-                <Link to="/choosepage">
+                <Link to="/login">
                     <SignupButton>가입하기</SignupButton>
                 </Link>
             </Inputs>

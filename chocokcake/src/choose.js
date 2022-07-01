@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 function ChoosePage() {
     const [number, setNumber] = useState(1);
-    const Img = [ChocoCake, Blueberry, Strawberry, MintChoco];
+    const Img = [ChocoCake, Strawberry, Blueberry, MintChoco];
 
     const right = () => {
         if (number === 4) {
