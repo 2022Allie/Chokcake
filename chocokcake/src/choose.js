@@ -37,7 +37,7 @@ function ChoosePage() {
                     <RightButton onClick={right}>▶</RightButton>
                 </Center>
                 <CakeNumber>{number}/4</CakeNumber>
-                <Link to="/letterOwner">
+                <Link to="/letterOwner" style={{ textDecoration: "none" }}>
                     <Button>이 케이크로 하기</Button>
                 </Link>
             </ImgDiv>
@@ -115,16 +115,17 @@ const SendCake = styled.div`
 `;
 
 const CakeNumber = styled.div`
+    margin-top: 10px;
     color: black;
-    font-size: 35px;
+    font-size: 40px;
     font-family: "NeoDunggeunmo";
     margin-bottom: 30px;
 `;
 
 const Button = styled.button`
     background-color: #ad8b73;
-    outline: none;
-    border: none;
+    outline: 0;
+    border: 0;
     border-radius: 10px;
     height: 50px;
     width: 318px;
