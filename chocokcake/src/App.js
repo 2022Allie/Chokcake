@@ -4,6 +4,7 @@ import Signup from "./signup";
 import Login from "./login";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import ChoosePage from "./choose";
+import LetterOwnerPage from "./letterOwner";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Route path="/login" element={<Login></Login>}></Route>
                 <Route path="/signup" element={<Signup></Signup>}></Route>
                 <Route path="/choosepage" element={<ChoosePage></ChoosePage>}></Route>
+                <Route path="/letterOwner" element={<LetterOwnerPage></LetterOwnerPage>}></Route>
             </Routes>
         </BrowserRouter>
     );
