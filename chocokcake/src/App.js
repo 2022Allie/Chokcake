@@ -1,10 +1,10 @@
 import "./App.css";
 import Main from "./components/Main/main";
-import Signup from "./signup";
-import Login from "./login";
+import Signup from "./components/signup";
+import Login from "./components/login";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
-import ChoosePage from "./choose";
-import LetterOwnerPage from "./letterOwner";
+import ChoosePage from "./components/choose";
+import LetterOwnerPage from "./components/letterOwner";
 
 function App() {
     return (
