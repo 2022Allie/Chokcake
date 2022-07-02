@@ -17,13 +17,14 @@ const Container = styled.div`
     right: 24px;
     width: 408px;
     height: 100px;
-    background-color: #ECDBC5;
+    background-color: #FFF6EA;
     border-radius: 12px;
     display: ${props => props.display};
     flex-direction: column;
     justify-content: center;
     padding-left: 15px;
     gap: 15px;
+    border: 1px solid #AD8B73;
 `
 const Text = styled.span`
     color: #AD8B73;
