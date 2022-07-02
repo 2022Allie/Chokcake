@@ -6,6 +6,20 @@ import xcandle from "../img/xcandle2.png";
 function LetterOwnerPage() {
     const [owner, setOwner] = useState("이름없음");
     const [ownerCakeNum, setOwnerCakeNum] = useState(1);
+    const [writerClicked, setWriterClicked] = useState(false);
+
+    const toggle = () => {
+        if (writerClicked === false) {
+            setWriterClicked(true);
+            console.log(true);
+            return;
+        }
+        if (writerClicked === true) {
+            setWriterClicked(false);
+            console.log(false);
+            return;
+        }
+    };
 
     const right = () => {
         if (ownerCakeNum === 3) {
@@ -26,10 +40,15 @@ function LetterOwnerPage() {
             <LogoDiv>
                 <Logo>초‘콕’케이크</Logo>
             </LogoDiv>
-            <WriterDiv>
+            <WriterDiv onClick={toggle}>
                 <Writer>편지 쓴 사람</Writer>
             </WriterDiv>
-            <WriterName></WriterName>
+            <WriterName hidden={writerClicked ? false : true}>
+                <Writers></Writers>
+                <Writers></Writers>
+                <Writers></Writers>
+                <Writers></Writers>
+            </WriterName>
             <Xcandle4 src={xcandle}></Xcandle4>
             <Xcandle1 src={xcandle}></Xcandle1>
             <Xcandle2 src={xcandle}></Xcandle2>
@@ -98,6 +117,21 @@ const WriterName = styled.div`
     margin-left: 50px;
     border-radius: 10px;
     background-color: #ecdbc5;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+`;
+
+const Writers = styled.div`
+    width: 190px;
+    height: 50px;
+    background-color: #ad8b73;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 10px;
 `;
 
 const ImgDiv = styled.div`
