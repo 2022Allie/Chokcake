@@ -2,55 +2,31 @@ import styled from "styled-components";
 import chococake from "../img/chococake.png";
 import React, { useState } from "react";
 import xcandle from "../img/xcandle2.png";
-import Menu from "./Menu/menu";
+import { Link } from "react-router-dom";
 
-function LetterOwnerPage() {
-    const [owner, setOwner] = useState("이름없음");
-    const [ownerCakeNum, setOwnerCakeNum] = useState(1);
-    const [writerClicked, setWriterClicked] = useState(false);
-
-    const toggle = () => {
-        if (writerClicked === false) {
-            setWriterClicked(true);
-            console.log(true);
-            return;
-        }
-        if (writerClicked === true) {
-            setWriterClicked(false);
-            console.log(false);
-            return;
-        }
-    };
+function LetterWriterPage() {
+    const [CakeNum, setCakeNum] = useState(1);
 
     const right = () => {
-        if (ownerCakeNum === 3) {
+        if (CakeNum === 3) {
             return;
         }
-        setOwnerCakeNum(ownerCakeNum + 1);
+        setCakeNum(CakeNum + 1);
     };
 
     const left = () => {
-        if (ownerCakeNum === 1) {
+        if (CakeNum === 1) {
             return;
         }
-        setOwnerCakeNum(ownerCakeNum - 1);
+        setCakeNum(CakeNum - 1);
     };
 
     return (
         <Background>
             <LogoDiv>
-                <Logo>초‘콕’케이크</Logo>
+                <Logo>'윤지'님의 초'콕'케이크</Logo>
             </LogoDiv>
-            <WriterDiv onClick={toggle}>
-                <Writer>편지 쓴 사람</Writer>
-            </WriterDiv>
-            <WriterName hidden={writerClicked ? false : true}>
-                <Writers></Writers>
-                <Writers></Writers>
-                <Writers></Writers>
-                <Writers></Writers>
-            </WriterName>
-            <ImgDiv>
+            <Section>
                 <Birth>탄생일 : 7월 19일</Birth>
                 <Center>
                     <LeftButton onClick={left}>▶</LeftButton>
@@ -67,23 +43,16 @@ function LetterOwnerPage() {
                     </Cake>
                     <RightButton onClick={right}>▶</RightButton>
                 </Center>
-                <CakeNumber>{ownerCakeNum}/3</CakeNumber>
-                <CakeOwner>'{owner}'님의 초‘콕’케이크</CakeOwner>
-                <SendCake>친구에게 초‘콕’케이크 나눠주기</SendCake>
-            </ImgDiv>
-            <Menu />
+                <CakeNumber>{CakeNum}/3</CakeNumber>
+                <WriteLetterButton>초'콕'케이크에 초'콕'하기</WriteLetterButton>
+                <Link to="/signup">
+                    <MakeCake>나도 초‘콕’케이크 만들러가기</MakeCake>
+                </Link>
+            </Section>
         </Background>
     );
 }
 
-export default LetterOwnerPage;
-
-const Cake = styled.div`
-    position: relative;
-    > .candle {
-        z-index: 1;
-    }
-`;
 
 const Background = styled.div`
     width: 100%;
@@ -103,53 +72,20 @@ const Logo = styled.div`
     color: #ad8b73;
 `;
 
-const WriterDiv = styled.div`
-    display: flex;
-    justify-content: left;
-`;
-
-const Writer = styled.button`
-    margin-left: 60px;
-    margin-top: 27px;
-    font-size: 30px;
-    border: 0;
-    outline: 0;
-    background-color: #fff6ea;
-    text-decoration: underline;
-    font-family: "NeoDunggeunmo";
-    color: #ad8b73;
-`;
-
-const WriterName = styled.div`
-    position: absolute;
-    margin-top: 40px;
-    width: 230px;
-    height: 200px;
-    margin-left: 50px;
-    border-radius: 10px;
-    background-color: #ecdbc5;
-    overflow-x: hidden;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    ::-webkit-scrollbar {
-        display: none;
+const Cake = styled.div`
+    position: relative;
+    > .candle {
+        z-index: 1;
     }
 `;
 
-const Writers = styled.div`
-    width: 190px;
-    height: 50px;
-    background-color: #ad8b73;
-    margin-top: 20px;
-    margin-left: 20px;
-    border-radius: 10px;
-`;
 
-const ImgDiv = styled.div`
+const Section = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 67px;
 `;
 
 const Birth = styled.div`
@@ -166,6 +102,7 @@ const Center = styled.div`
 const Img = styled.img`
     width: 628px;
     height: 500px;
+    position: relative;
 `;
 
 const LeftButton = styled.button`
@@ -199,7 +136,7 @@ const CakeNumber = styled.div`
     font-family: "NeoDunggeunmo";
 `;
 
-const CakeOwner = styled.div`
+const WriteLetterButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -213,7 +150,7 @@ const CakeOwner = styled.div`
     margin-top: 10px;
 `;
 
-const SendCake = styled.button`
+const MakeCake = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -285,3 +222,6 @@ const Xcandle8 = styled.img`
     left: 521px;
     top: 205px;
 `;
+
+
+export default LetterWriterPage;

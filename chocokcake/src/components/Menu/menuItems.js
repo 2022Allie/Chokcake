@@ -26,6 +26,7 @@ function MenuItems({ setClicked, clicked }) {
 
 
 const Container = styled.div`
+    z-index: 2;
     padding-top: 130px;
     padding-left: 28px;
     background-color: #ECDBC5;

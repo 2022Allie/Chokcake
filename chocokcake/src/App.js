@@ -5,6 +5,7 @@ import Login from "./components/login";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import ChoosePage from "./components/choose";
 import LetterOwnerPage from "./components/letterOwner";
+import LetterWriterPage from "./components/letterWriterPage";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/signup" element={<Signup></Signup>}></Route>
                 <Route path="/choosepage" element={<ChoosePage></ChoosePage>}></Route>
                 <Route path="/letterOwner" element={<LetterOwnerPage></LetterOwnerPage>}></Route>
+                <Route path="/letterWriter" element={<LetterWriterPage></LetterWriterPage>}></Route>
             </Routes>
         </BrowserRouter>
     );
