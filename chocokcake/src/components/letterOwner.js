@@ -2,6 +2,7 @@ import styled from "styled-components";
 import chococake from "../img/chococake.png";
 import React, { useState } from "react";
 import xcandle from "../img/xcandle2.png";
+import Menu from "./Menu/menu";
 
 function LetterOwnerPage() {
     const [owner, setOwner] = useState("이름없음");
@@ -49,30 +50,40 @@ function LetterOwnerPage() {
                 <Writers></Writers>
                 <Writers></Writers>
             </WriterName>
-            <Xcandle4 src={xcandle}></Xcandle4>
-            <Xcandle1 src={xcandle}></Xcandle1>
-            <Xcandle2 src={xcandle}></Xcandle2>
-            <Xcandle3 src={xcandle}></Xcandle3>
-            <Xcandle5 src={xcandle}></Xcandle5>
-            <Xcandle6 src={xcandle}></Xcandle6>
-            <Xcandle7 src={xcandle}></Xcandle7>
-            <Xcandle8 src={xcandle}></Xcandle8>
             <ImgDiv>
                 <Birth>탄생일 : 7월 19일</Birth>
                 <Center>
                     <LeftButton onClick={left}>▶</LeftButton>
-                    <Img src={chococake}></Img>
+                    <Cake>
+                        <Xcandle1 className="candle" src={xcandle}></Xcandle1>
+                        <Xcandle2 className="candle" src={xcandle}></Xcandle2>
+                        <Xcandle3 className="candle" src={xcandle}></Xcandle3>
+                        <Xcandle4 className="candle" src={xcandle}></Xcandle4>
+                        <Xcandle5 className="candle" src={xcandle}></Xcandle5>
+                        <Xcandle6 className="candle" src={xcandle}></Xcandle6>
+                        <Xcandle7 className="candle" src={xcandle}></Xcandle7>
+                        <Xcandle8 className="candle" src={xcandle}></Xcandle8>
+                        <Img src={chococake}></Img>
+                    </Cake>
                     <RightButton onClick={right}>▶</RightButton>
                 </Center>
                 <CakeNumber>{ownerCakeNum}/3</CakeNumber>
                 <CakeOwner>'{owner}'님의 초‘콕’케이크</CakeOwner>
                 <SendCake>친구에게 초‘콕’케이크 나눠주기</SendCake>
             </ImgDiv>
+            <Menu />
         </Background>
     );
 }
 
 export default LetterOwnerPage;
+
+const Cake = styled.div`
+    position: relative;
+    > .candle {
+        z-index: 1;
+    }
+`;
 
 const Background = styled.div`
     width: 100%;
@@ -221,56 +232,56 @@ const Xcandle1 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    margin-left: 1160px;
-    margin-top: 265px;
+    top: 16px;
+    left: 150px;
 `;
 const Xcandle2 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    margin-left: 1050px;
-    margin-top: 295px;
+    left: 256px;
+    bottom: 410px;
 `;
 const Xcandle3 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    margin-left: 830px;
-    margin-top: 295px;
+    left: 382px;
+    bottom: 410px;
 `;
 const Xcandle4 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    margin-left: 745px;
-    margin-top: 265px;
+    right: 144px;
+    top: 16px;
 `;
 
 const Xcandle5 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    margin-left: 805px;
-    margin-top: 60px;
+    left: 94px;
+    top: 205px;
 `;
 const Xcandle6 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    margin-left: 900px;
-    margin-top: 40px;
+    top: 228px;
+    left: 210px;
 `;
 const Xcandle7 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    margin-left: 1000px;
-    margin-top: 40px;
+    top: 228px;
+    left: 390px;
 `;
 const Xcandle8 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    margin-left: 1090px;
-    margin-top: 60px;
+    left: 521px;
+    top: 205px;
 `;
