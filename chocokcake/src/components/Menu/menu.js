@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styled from "styled-components"
 import menuimg from "../../img/Menu.png"
 import MenuItems from "./menuItems"
@@ -19,9 +19,11 @@ const MenuButton = styled.button`
     top: 27px;
     right: 54px;
     border: none;
-    background-color: #FFF6EA;
+    background-color: #FFF6EA; 
+    > img {
+        width: 45px;
+        height: 45px;
+    }
 `
-
-
 
 export default Menu;
