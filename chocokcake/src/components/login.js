@@ -8,18 +8,20 @@ function Login() {
         <>
             <Logo>초'콕'케이크</Logo>
             <Title>로그인 중 . . .</Title>
-            <Inputs>
-                <Input placeholder="아이디를 입력해주세요."></Input>
-                <Input placeholder="비밀번호를 입력해주세요."></Input>
-            </Inputs>
-            <Buttons>
-                <Link to="/signup">
-                    <Button>가입하러 가기</Button>
-                </Link>
-                <Link to="/choosePage">
-                    <Button>로그인</Button>
-                </Link>
-            </Buttons>
+            <LoginInputs>
+                <Inputs>
+                    <Input placeholder="아이디를 입력해주세요."></Input>
+                    <Input placeholder="비밀번호를 입력해주세요."></Input>
+                </Inputs>
+                <Buttons>
+                    <Link to="/signup">
+                        <Button>가입하러 가기</Button>
+                    </Link>
+                    <Link to="/choosePage">
+                        <Button>로그인</Button>
+                    </Link>
+                </Buttons>
+            </LoginInputs>
         </>
     );
 }
@@ -43,6 +45,7 @@ const Inputs = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 auto;
 `;
 
 const Input = styled.input`
@@ -63,19 +66,24 @@ const Input = styled.input`
 `;
 const Buttons = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 `;
 
 const Button = styled.button`
     font-family: ${defaultFont};
     font-size: 30px;
-    width: 340px;
+    width: 380px;
     height: 72px;
     background-color: #ecdbc5;
     border: none;
     border-radius: 20px;
-    margin-left: 60px;
-    margin-right: 60px;
+`;
+
+const LoginInputs = styled.div`
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    width: 800px;
 `;
 
 export default Login;
