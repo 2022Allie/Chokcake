@@ -2,7 +2,6 @@ import styled from "styled-components";
 import chococake from "../img/chococake.png";
 import React, { useState } from "react";
 import xcandle from "../img/xcandle2.png";
-import { click } from "@testing-library/user-event/dist/click";
 
 function LetterOwnerPage() {
     const [owner, setOwner] = useState("이름없음");
