@@ -44,7 +44,9 @@ function LetterWriterPage() {
                     <RightButton onClick={right}>▶</RightButton>
                 </Center>
                 <CakeNumber>{CakeNum}/3</CakeNumber>
-                <WriteLetterButton>초'콕'케이크에 초'콕'하기</WriteLetterButton>
+                <Link to="/chooseCandle">
+                    <WriteLetterButton>초'콕'케이크에 초'콕'하기</WriteLetterButton>
+                </Link>
                 <Link to="/signup">
                     <MakeCake>나도 초‘콕’케이크 만들러가기</MakeCake>
                 </Link>
@@ -52,7 +54,6 @@ function LetterWriterPage() {
         </Background>
     );
 }
-
 
 const Background = styled.div`
     width: 100%;
@@ -78,7 +79,6 @@ const Cake = styled.div`
         z-index: 1;
     }
 `;
-
 
 const Section = styled.div`
     display: flex;
@@ -222,6 +222,5 @@ const Xcandle8 = styled.img`
     left: 521px;
     top: 205px;
 `;
-
 
 export default LetterWriterPage;

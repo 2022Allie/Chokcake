@@ -33,7 +33,7 @@ function ChoosePage() {
                 <SendCake>케이크 만들기</SendCake>
                 <Center>
                     <LeftButton onClick={left}>▶</LeftButton>
-                    <Cake src={Img[number - 1]}></Cake>
+                    <Cake src={Img[number - 1]} number={number}></Cake>
                     <RightButton onClick={right}>▶</RightButton>
                 </Center>
                 <CakeNumber>{number}/4</CakeNumber>
