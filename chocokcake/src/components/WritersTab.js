@@ -29,6 +29,7 @@ const WriterName = styled.div`
     ::-webkit-scrollbar {
         display: none;
     }
+    z-index: 2;
 `;
 
 const Writers = styled.div`
@@ -38,4 +39,5 @@ const Writers = styled.div`
     margin-top: 20px;
     margin-left: 20px;
     border-radius: 10px;
+    z-index: 3;
 `;

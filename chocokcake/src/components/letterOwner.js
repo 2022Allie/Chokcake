@@ -46,15 +46,6 @@ function LetterOwnerPage() {
                 <Writer>편지 쓴 사람</Writer>
             </WriterDiv>
             <WritersTab writerClicked={writerClicked} setWriterClicked={setWriterClicked}></WritersTab>
-            <Xcandle4 src={xcandle}></Xcandle4>
-            <Xcandle1 src={xcandle}></Xcandle1>
-            <Xcandle2 src={xcandle}></Xcandle2>
-            <Xcandle3 src={xcandle}></Xcandle3>
-            <Xcandle5 src={xcandle}></Xcandle5>
-            <Xcandle6 src={xcandle}></Xcandle6>
-            <Xcandle7 src={xcandle}></Xcandle7>
-            <Xcandle8 src={xcandle}></Xcandle8>
-            
             <ImgDiv>
                 <Birth>탄생일 : 7월 19일</Birth>
                 <Center>
