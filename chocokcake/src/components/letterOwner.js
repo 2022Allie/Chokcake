@@ -4,12 +4,14 @@ import React, { useState } from "react";
 import xcandle from "../img/xcandle2.png";
 import WritersTab from "./WritersTab";
 import Menu from "./Menu/menu";
+import triangle1 from "../img/triangle 1.svg";
+import triangle2 from "../img/triangle 2.svg";
 
 function LetterOwnerPage() {
     const [owner, setOwner] = useState("이름없음");
     const [ownerCakeNum, setOwnerCakeNum] = useState(1);
     const [writerClicked, setWriterClicked] = useState(false);
-
+    const [arrowClicked, setArrowClicekd] = useState(false);
     const toggle = () => {
         if (writerClicked === false) {
             setWriterClicked(true);
@@ -43,7 +45,10 @@ function LetterOwnerPage() {
                 <Logo>초‘콕’케이크</Logo>
             </LogoDiv>
             <WriterDiv onClick={toggle}>
-                <Writer>편지 쓴 사람</Writer>
+                <Writer onClick={() => setArrowClicekd(!arrowClicked)}>
+                    편지 쓴 사람
+                    <Arrow src={arrowClicked ? triangle2 : triangle1}></Arrow>
+                </Writer>
             </WriterDiv>
             <WritersTab writerClicked={writerClicked} setWriterClicked={setWriterClicked}></WritersTab>
             <ImgDiv>
@@ -111,8 +116,16 @@ const Writer = styled.button`
     border: 0;
     outline: 0;
     background-color: #fff6ea;
-    text-decoration: underline;
     font-family: "NeoDunggeunmo";
+    color: #ad8b73;
+`;
+
+const Arrow = styled.img`
+    margin-left: 10px;
+    font-size: 30px;
+    border: 0;
+    outline: 0;
+    background-color: #fff6ea;
     color: #ad8b73;
 `;
 

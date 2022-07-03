@@ -33,6 +33,10 @@ const WriterName = styled.div`
 `;
 
 const Writers = styled.div`
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: white;
     width: 190px;
     height: 50px;
     background-color: #ad8b73;

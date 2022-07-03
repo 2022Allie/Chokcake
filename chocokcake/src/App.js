@@ -6,6 +6,8 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import ChoosePage from "./components/choose";
 import LetterOwnerPage from "./components/letterOwner";
 import LetterWriterPage from "./components/letterWriterPage";
+import ChooseCandle from "./components/Modals/candleModal";
+import WriteLetter from "./components/Modals/writeLetterModal";
 
 function App() {
     return (
@@ -18,6 +20,8 @@ function App() {
                 <Route path="/choosepage" element={<ChoosePage></ChoosePage>}></Route>
                 <Route path="/letterOwner" element={<LetterOwnerPage></LetterOwnerPage>}></Route>
                 <Route path="/letterWriter" element={<LetterWriterPage></LetterWriterPage>}></Route>
+                <Route path="/chooseCandle" element={<ChooseCandle></ChooseCandle>}></Route>
+                <Route path="/writerLetter" element={<WriteLetter></WriteLetter>}></Route>
             </Routes>
         </BrowserRouter>
     );
