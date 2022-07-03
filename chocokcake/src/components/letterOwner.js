@@ -2,6 +2,7 @@ import styled from "styled-components";
 import chococake from "../img/chococake.png";
 import React, { useState } from "react";
 import xcandle from "../img/xcandle2.png";
+import WritersTab from "./WritersTab";
 import Menu from "./Menu/menu";
 
 function LetterOwnerPage() {
@@ -44,12 +45,16 @@ function LetterOwnerPage() {
             <WriterDiv onClick={toggle}>
                 <Writer>편지 쓴 사람</Writer>
             </WriterDiv>
-            <WriterName hidden={writerClicked ? false : true}>
-                <Writers></Writers>
-                <Writers></Writers>
-                <Writers></Writers>
-                <Writers></Writers>
-            </WriterName>
+            <WritersTab writerClicked={writerClicked} setWriterClicked={setWriterClicked}></WritersTab>
+            <Xcandle4 src={xcandle}></Xcandle4>
+            <Xcandle1 src={xcandle}></Xcandle1>
+            <Xcandle2 src={xcandle}></Xcandle2>
+            <Xcandle3 src={xcandle}></Xcandle3>
+            <Xcandle5 src={xcandle}></Xcandle5>
+            <Xcandle6 src={xcandle}></Xcandle6>
+            <Xcandle7 src={xcandle}></Xcandle7>
+            <Xcandle8 src={xcandle}></Xcandle8>
+            
             <ImgDiv>
                 <Birth>탄생일 : 7월 19일</Birth>
                 <Center>
@@ -118,31 +123,6 @@ const Writer = styled.button`
     text-decoration: underline;
     font-family: "NeoDunggeunmo";
     color: #ad8b73;
-`;
-
-const WriterName = styled.div`
-    position: absolute;
-    margin-top: 40px;
-    width: 230px;
-    height: 200px;
-    margin-left: 50px;
-    border-radius: 10px;
-    background-color: #ecdbc5;
-    overflow-x: hidden;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    ::-webkit-scrollbar {
-        display: none;
-    }
-`;
-
-const Writers = styled.div`
-    width: 190px;
-    height: 50px;
-    background-color: #ad8b73;
-    margin-top: 20px;
-    margin-left: 20px;
-    border-radius: 10px;
 `;
 
 const ImgDiv = styled.div`
