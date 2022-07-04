@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import chococake from "../img/chococake.png";
+import chococake from "../img/pixelart/Cake/chococake.png";
 import React, { useState } from "react";
-import xcandle from "../img/xcandle2.png";
+import xcandle from "../img/pixelart/candle/xcandle.png";
 import { Link } from "react-router-dom";
 import ChooseCandle from "./Modals/candleModal.js";
 import WriteLetter from "./Modals/writeLetterModal.js";

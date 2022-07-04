@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import ChocoCake from "../img/chococake.png";
-import Blueberry from "../img/blueberry.png";
-import Strawberry from "../img/strawberry.png";
-import MintChoco from "../img/mintchoco.png";
+import ChocoCake from "../img/pixelart/Cake/chococake.png";
+import Blueberry from "../img/pixelart/Cake/blueberry.png";
+import Strawberry from "../img/pixelart/Cake/strawberry.png";
+import MintChoco from "../img/pixelart/Cake/mintchoco.png";
 import React, { useState } from "react";
-import xcandle from "../img/xcandle2.png";
+import xcandle from "../img/pixelart/candle/xcandle.png";
 import WritersTab from "./WritersTab";
 import Menu from "./Menu/menu";
-import triangle1 from "../img/triangle 1.svg";
-import triangle2 from "../img/triangle 2.svg";
+import triangle1 from "../img/Icon/triangle 1.svg";
+import triangle2 from "../img/Icon/triangle 2.svg";
 
 function LetterOwnerPage() {
     const [owner, setOwner] = useState("이름없음");

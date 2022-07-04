@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import MainCake from "../../img/MainLogo.png";
+import MainCake from "../../img/pixelart/MainLogo.png";
 import { Link } from "react-router-dom";
 import * as S from "./styles";
 

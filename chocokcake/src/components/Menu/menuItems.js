@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
-import menuXimg from "../../img/MenuX.png"
+import menuXimg from "../../img/Icon/MenuX.png"
 import MyAccount from "./myAccount";
 import Developer from "./developer";
-import triangle1 from "../../img/triangle 1.svg";
-import triangle2 from "../../img/triangle 2.svg";
+import triangle1 from "../../img/Icon/triangle 1.svg";
+import triangle2 from "../../img/Icon/triangle 2.svg";
 
 function MenuItems({ setClicked, clicked }) {
     const [account, setAccount] = useState(false);
@@ -14,7 +14,7 @@ function MenuItems({ setClicked, clicked }) {
         <>
             <Container display={clicked ? "flex" : "none"} >
                 <MenuButton onClick={() => setClicked(false)}><img src={menuXimg} /></MenuButton>
-                <MenuItem onClick={() => setAccount(!account)}>내 계정 <img src={account?triangle2:triangle1}/></MenuItem>
+                <MenuItem onClick={() => setAccount(!account)}>내 계정 <img src={account ? triangle2 : triangle1} /></MenuItem>
                 <MyAccount account={account}></MyAccount>
                 <MenuItem onClick={() => setDeveloper(!developer)}>초'콕'케이크 개발자 <img src={developer ? triangle2 : triangle1} /></MenuItem>
                 <Developer developer={developer}></Developer>
