@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import chococake from "../img/chococake.png";
+import ChocoCake from "../img/chococake.png";
+import Blueberry from "../img/blueberry.png";
+import Strawberry from "../img/strawberry.png";
+import MintChoco from "../img/mintchoco.png";
 import React, { useState } from "react";
 import xcandle from "../img/xcandle2.png";
 import WritersTab from "./WritersTab";
@@ -12,15 +15,14 @@ function LetterOwnerPage() {
     const [ownerCakeNum, setOwnerCakeNum] = useState(1);
     const [writerClicked, setWriterClicked] = useState(false);
     const [arrowClicked, setArrowClicekd] = useState(false);
+    const Cakie = [ChocoCake, Strawberry, Blueberry, MintChoco];
     const toggle = () => {
         if (writerClicked === false) {
             setWriterClicked(true);
-            console.log(true);
             return;
         }
         if (writerClicked === true) {
             setWriterClicked(false);
-            console.log(false);
             return;
         }
     };
@@ -64,7 +66,7 @@ function LetterOwnerPage() {
                         <Xcandle6 className="candle" src={xcandle}></Xcandle6>
                         <Xcandle7 className="candle" src={xcandle}></Xcandle7>
                         <Xcandle8 className="candle" src={xcandle}></Xcandle8>
-                        <Img src={chococake}></Img>
+                        <Img src={Cakie[0]}></Img>
                     </Cake>
                     <RightButton onClick={right}>▶</RightButton>
                 </Center>

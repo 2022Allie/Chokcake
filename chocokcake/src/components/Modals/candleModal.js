@@ -19,9 +19,43 @@ import bsseven from "../../img/pixelart/candle/seven.png";
 import bseight from "../../img/pixelart/candle/eight.png";
 import bsnine from "../../img/pixelart/candle/nine.png";
 import bszero from "../../img/pixelart/candle/zero.png";
+import bsA from "../../img/pixelart/candle/alphabet/candle-A.png";
+import bsB from "../../img/pixelart/candle/alphabet/candle-B.png";
+import bsC from "../../img/pixelart/candle/alphabet/candle-C.png";
+import bsD from "../../img/pixelart/candle/alphabet/candle-D.png";
+import bsE from "../../img/pixelart/candle/alphabet/candle-E.png";
+import bsF from "../../img/pixelart/candle/alphabet/candle-F.png";
+import bsG from "../../img/pixelart/candle/alphabet/candle-G.png";
+import bsH from "../../img/pixelart/candle/alphabet/candle-H.png";
+import bsI from "../../img/pixelart/candle/alphabet/candle-I.png";
+import bsJ from "../../img/pixelart/candle/alphabet/candle-J.png";
+import bsK from "../../img/pixelart/candle/alphabet/candle-K.png";
+import bsL from "../../img/pixelart/candle/alphabet/candle-L.png";
+import bsM from "../../img/pixelart/candle/alphabet/candle-M.png";
+import bsN from "../../img/pixelart/candle/alphabet/candle-N.png";
+import bsO from "../../img/pixelart/candle/alphabet/candle-O.png";
+import bsP from "../../img/pixelart/candle/alphabet/candle-P.png";
+import bsQ from "../../img/pixelart/candle/alphabet/candle-Q.png";
+import bsR from "../../img/pixelart/candle/alphabet/candle-R.png";
+import bsS from "../../img/pixelart/candle/alphabet/candle-S.png";
+import bsT from "../../img/pixelart/candle/alphabet/candle-T.png";
+import bsU from "../../img/pixelart/candle/alphabet/candle-U.png";
+import bsV from "../../img/pixelart/candle/alphabet/candle-V.png";
+import bsW from "../../img/pixelart/candle/alphabet/candle-W.png";
+import bsX from "../../img/pixelart/candle/alphabet/candle-X.png";
+import bsY from "../../img/pixelart/candle/alphabet/candle-Y.png";
+import bsZ from "../../img/pixelart/candle/alphabet/candle-Z.png";
+import WriteLetter from "./writeLetterModal.js";
 
-function ChooseCandle() {
+function ChooseCandle({ candleMd, setCandleMd, letterMd, setLetterMd }) {
     const [candles, setCandles] = useState("");
+    const [chooseClicked, setChooseClicked] = useState(false);
+    const choosefuc = () => {
+        setChooseClicked(true);
+        setCandleMd(false);
+        setLetterMd(true);
+    };
+
     const candle = [
         { image: bsred },
         { image: bsorange },
@@ -41,21 +75,46 @@ function ChooseCandle() {
         { image: bseight },
         { image: bsnine },
         { image: bszero },
+        { image: bsA },
+        { image: bsB },
+        { image: bsC },
+        { image: bsD },
+        { image: bsE },
+        { image: bsF },
+        { image: bsG },
+        { image: bsH },
+        { image: bsI },
+        { image: bsJ },
+        { image: bsK },
+        { image: bsL },
+        { image: bsM },
+        { image: bsN },
+        { image: bsO },
+        { image: bsP },
+        { image: bsQ },
+        { image: bsR },
+        { image: bsS },
+        { image: bsT },
+        { image: bsU },
+        { image: bsV },
+        { image: bsW },
+        { image: bsX },
+        { image: bsY },
+        { image: bsZ },
     ];
 
     return (
-        <Background>
-            <BackTab>
-                <FrontTab>
+        <Background className="back">
+            {chooseClicked ? <WriteLetter></WriteLetter> : null}
+            <BackTab className="back">
+                <FrontTab className="back">
                     {candle.map((img) => (
-                        <Candle>
+                        <Candle className="back">
                             <CandleImg src={img.image}></CandleImg>
                         </Candle>
                     ))}
                 </FrontTab>
-                <Link to="/writerLetter">
-                    <ChooseBtn>고르기</ChooseBtn>
-                </Link>
+                <ChooseBtn onClick={choosefuc}>고르기</ChooseBtn>
             </BackTab>
         </Background>
     );
@@ -64,60 +123,84 @@ function ChooseCandle() {
 export default ChooseCandle;
 
 const Background = styled.div`
+    position: absolute;
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: #e5e5e5;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.65);
 `;
 
 const BackTab = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 570px;
-    height: 750px;
+    width: 745px;
+    height: 880px;
     background-color: #ecdbc5;
     border-radius: 10px;
+    .back {
+        z-index: 4;
+    }
 `;
 
 const FrontTab = styled.div`
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    width: 510px;
-    height: 570px;
-    margin-top: 25px;
+    width: 630px;
+    height: 690px;
+    border-radius: 10px;
+    margin-top: 40px;
     background-color: #ad8b73;
     overflow-x: hidden;
+    &::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background: #ccc;
+    }
+    .back {
+        z-index: 4;
+    }
 `;
 
 const Candle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 130px;
-    height: 170px;
+    width: 170px;
+    height: 230px;
     background-color: white;
     border-radius: 10px;
     margin-left: 25px;
-    margin-top: 20px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    .back {
+        z-index: 4;
+    }
 `;
 
 const ChooseBtn = styled.button`
-    background-color: #fff6ea;
-    width: 170px;
-    height: 50px;
+    background-color: #ad8b73;
+    width: 220px;
+    height: 55px;
     border-radius: 10px;
     margin-top: 50px;
     border: 0;
     outline: 0;
-    font-size: 25px;
+    font-size: 30px;
     font-family: "NeoDunggeunmo";
+    .back {
+        z-index: 4;
+    }
 `;
 
 const CandleImg = styled.img`
-    width: 50px;
-    height: 120px;
+    width: 70px;
+    height: 160px;
+    .back {
+        z-index: 4;
+    }
 `;

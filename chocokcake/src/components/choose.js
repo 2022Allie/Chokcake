@@ -5,6 +5,7 @@ import Strawberry from "../img/strawberry.png";
 import MintChoco from "../img/mintchoco.png";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import LetterWriterPage from "./letterWriterPage";
 
 function ChoosePage() {
     const [number, setNumber] = useState(1);
