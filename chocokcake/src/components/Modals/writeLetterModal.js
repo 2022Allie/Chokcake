@@ -3,16 +3,20 @@ import { Link } from "react-router-dom";
 
 const defaultFont = "NeoDunggeunmo";
 
-function WriteLetter() {
+function WriteLetter({ setLetterMd, LetterMd }) {
+    const complete = () => {
+        setLetterMd(false);
+    };
+
     return (
         <>
-            <ModalBackground>
-                <Modal>
-                    <NameInput placeholder="From. " />
-                    <Letter placeholder="하시고 싶으신 이야기를 적어주세요." />
-                    <Link to="/letterWriter">
-                        <ClearButton>완료</ClearButton>
-                    </Link>
+            <ModalBackground className="back">
+                <Modal className="back">
+                    <NameInput className="back" placeholder="From. " />
+                    <Letter className="back" placeholder="하시고 싶으신 이야기를 적어주세요." />
+                    <ClearButton className="back" onClick={complete}>
+                        완료
+                    </ClearButton>
                 </Modal>
             </ModalBackground>
         </>
@@ -20,6 +24,7 @@ function WriteLetter() {
 }
 
 const ModalBackground = styled.div`
+    position: absolute;
     top: 0;
     position: fixed;
     background-color: black;
@@ -29,6 +34,7 @@ const ModalBackground = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 99;
 `;
 
 const Modal = styled.div`
@@ -41,6 +47,7 @@ const Modal = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 99;
 `;
 const NameInput = styled.input`
     font-family: ${defaultFont};
@@ -55,6 +62,7 @@ const NameInput = styled.input`
     ::placeholder {
         color: #ad8b73;
     }
+    z-index: 99;
 `;
 
 const Letter = styled.textarea`
@@ -71,6 +79,7 @@ const Letter = styled.textarea`
     ::placeholder {
         color: #ad8b73;
     }
+    z-index: 99;
 `;
 
 const ClearButton = styled.button`
@@ -84,6 +93,7 @@ const ClearButton = styled.button`
     outline: none;
     color: black;
     border-radius: 12px;
+    z-index: 99;
 `;
 
 export default WriteLetter;

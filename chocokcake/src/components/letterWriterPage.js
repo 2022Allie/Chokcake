@@ -3,9 +3,13 @@ import chococake from "../img/chococake.png";
 import React, { useState } from "react";
 import xcandle from "../img/xcandle2.png";
 import { Link } from "react-router-dom";
+import ChooseCandle from "./Modals/candleModal.js";
+import WriteLetter from "./Modals/writeLetterModal.js";
 
 function LetterWriterPage() {
     const [CakeNum, setCakeNum] = useState(1);
+    const [candleMd, setCandleMd] = useState(false);
+    const [letterMd, setLetterMd] = useState(false);
 
     const right = () => {
         if (CakeNum === 3) {
@@ -44,9 +48,16 @@ function LetterWriterPage() {
                     <RightButton onClick={right}>▶</RightButton>
                 </Center>
                 <CakeNumber>{CakeNum}/3</CakeNumber>
-                <Link to="/chooseCandle">
-                    <WriteLetterButton>초'콕'케이크에 초'콕'하기</WriteLetterButton>
-                </Link>
+                <WriteLetterButton onClick={() => setCandleMd(!candleMd)}>초'콕'케이크에 초'콕'하기</WriteLetterButton>
+                {candleMd ? (
+                    <ChooseCandle
+                        candleMd={candleMd}
+                        setCandleMd={setCandleMd}
+                        letterMd={letterMd}
+                        setLetterMd={setLetterMd}
+                    ></ChooseCandle>
+                ) : null}
+                {letterMd ? <WriteLetter letterMd={letterMd} setLetterMd={setLetterMd}></WriteLetter> : null}
                 <Link to="/signup">
                     <MakeCake>나도 초‘콕’케이크 만들러가기</MakeCake>
                 </Link>
@@ -136,7 +147,7 @@ const CakeNumber = styled.div`
     font-family: "NeoDunggeunmo";
 `;
 
-const WriteLetterButton = styled.div`
+const WriteLetterButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,6 +159,8 @@ const WriteLetterButton = styled.div`
     border-radius: 10px;
     font-family: "NeoDunggeunmo";
     margin-top: 10px;
+    border: 0;
+    outline: 0;
 `;
 
 const MakeCake = styled.button`
