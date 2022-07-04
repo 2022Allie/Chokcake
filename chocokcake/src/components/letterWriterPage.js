@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import chococake from "../img/pixelart/Cake/chococake.png";
+import chococake from "../img/pixelart/cake/chococake.png";
 import React, { useState } from "react";
 import xcandle from "../img/pixelart/candle/xcandle.png";
 import { Link } from "react-router-dom";

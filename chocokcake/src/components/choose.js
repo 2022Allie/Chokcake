@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import ChocoCake from "../img/pixelart/Cake/chococake.png";
-import Blueberry from "../img/pixelart/Cake/blueberry.png";
-import Strawberry from "../img/pixelart/Cake/strawberry.png";
-import MintChoco from "../img/pixelart/Cake/mintchoco.png";
+import ChocoCake from "../img/pixelart/cake/chococake.png";
+import Blueberry from "../img/pixelart/cake/blueberry.png";
+import Strawberry from "../img/pixelart/cake/strawberry.png";
+import MintChoco from "../img/pixelart/cake/mintchoco.png";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LetterWriterPage from "./letterWriterPage";
