@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 function WritersTab({ writerClicked }) {
-    console.log(writerClicked);
-
     return (
         <WriterName hidden={writerClicked ? false : true}>
             <Writers></Writers>

@@ -1,25 +1,53 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import loginDB from "./LoginPage";
 
 const defaultFont = "NeoDunggeunmo";
 
 function Login() {
+    const [id, setId] = useState("");
+    const [pw, setPw] = useState("");
+
+    const LoginPage = () => {
+        if (id === "" && pw === "") {
+            alert("아이디와 비밀번호를 입력해주세요");
+        } else if (id === "" || pw === "") {
+            alert("아이디 또는 비밀번호를 입력해주세요");
+        } else {
+            IdPw();
+        }
+    };
+
+    const IdPw = () => {
+        loginDB(id, pw)();
+    };
+
     return (
         <>
             <Logo>초'콕'케이크</Logo>
             <Title>로그인 중 . . .</Title>
             <LoginInputs>
                 <Inputs>
-                    <Input placeholder="아이디를 입력해주세요."></Input>
-                    <Input placeholder="비밀번호를 입력해주세요."></Input>
+                    <Input
+                        onChange={(e) => {
+                            setId(e.target.value);
+                        }}
+                        maxLength="10"
+                        placeholder="아이디를 입력해주세요."
+                    ></Input>
+                    <Input
+                        onChange={(e) => {
+                            setPw(e.target.value);
+                        }}
+                        placeholder="비밀번호를 입력해주세요."
+                    ></Input>
                 </Inputs>
                 <Buttons>
                     <Link to="/signup">
                         <Button>가입하러 가기</Button>
                     </Link>
-                    <Link to="/choosePage">
-                        <Button>로그인</Button>
-                    </Link>
+                    <Button onClick={LoginPage}>로그인</Button>
                 </Buttons>
             </LoginInputs>
         </>
