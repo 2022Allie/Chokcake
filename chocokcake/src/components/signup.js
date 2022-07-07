@@ -27,7 +27,7 @@ function Signup() {
                 }
             );
         } catch (e) {
-            alert("회원가입 실패 -> 백엔드 잘못");
+            alert("회원가입 실패에 실패하셨습니다.");
         }
     }
 
