@@ -12,8 +12,8 @@ const loginDB = (id, password) => {
         })
             .then((res) => {
                 console.log(res.data);
-                localStorage.setItem("accessToken", res.data.accessToken);
-                window.location.href = "/letterOwner";
+                localStorage.setItem("accessToken", res.data.access_token);
+                window.location.href = "/choosePage";
             })
             .catch((err) => {
                 console.log(err);
