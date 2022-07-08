@@ -23,9 +23,9 @@ function Withdrawal({ withdrawal }) {
                     },
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("accessToken")}`
-
                     }
                 })
+                window.location.href = "/";
             }
             catch (e) {
                 alert("아이디나 비밀번호를 틀리셨습니다.");
