@@ -4,10 +4,10 @@ const loginDB = (id, password) => {
     return function () {
         axios({
             method: "post",
-            url: "http://10.156.147.203:8080/account/login",
+            url: process.env.REACT_APP_API_URL + "/account/login",
             data: {
-                account_id: "gurdl",
-                password: "kang0525@",
+                account_id: id,
+                password: password,
             },
         })
             .then((res) => {

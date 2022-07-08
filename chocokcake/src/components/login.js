@@ -37,6 +37,7 @@ function Login() {
                         placeholder="아이디를 입력해주세요."
                     ></Input>
                     <Input
+                        type="password"
                         onChange={(e) => {
                             setPw(e.target.value);
                         }}
