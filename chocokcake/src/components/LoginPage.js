@@ -1,10 +1,11 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const loginDB = (id, password) => {
     return function () {
         axios({
             method: "post",
-            url: process.env.REACT_APP_API_URL + "/account/login",
+            url: process.env.REACT_APP_BASE_URL + "/account/login",
             data: {
                 account_id: id,
                 password: password,

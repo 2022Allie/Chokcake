@@ -13,27 +13,36 @@ function Withdrawal({ withdrawal }) {
         console.log(e);
         if (e.key === "Enter") {
             try {
-                await axios.delete(`${BASEURL}/account`,
-                    {
-                        accoutId: id,
-                        password: password
-                    }
-                )
-            }
-            catch (e) {
+                await axios.delete(`${BASEURL}/account`, {
+                    accoutId: id,
+                    password: password,
+                });
+            } catch (e) {
                 alert("아이디나 비밀번호를 틀리셨습니다.");
             }
         }
-    }
+    };
 
     return (
         <>
-            <Container display={withdrawal ? "flex" : "none"} >
-                <Input onChange={(e) => { setId(e.target.value); }} placeholder="아이디를 입력해주세요" ></Input>
-                <Input type="password" onChange={(e) => { setPassword(e.target.value); }} onKeyPress={deleteAccount} placeholder="비밀번호를 입력해주세요"></Input>
+            <Container display={withdrawal ? "flex" : "none"}>
+                <Input
+                    onChange={(e) => {
+                        setId(e.target.value);
+                    }}
+                    placeholder="아이디를 입력해주세요"
+                ></Input>
+                <Input
+                    type="password"
+                    onChange={(e) => {
+                        setPassword(e.target.value);
+                    }}
+                    onKeyPress={deleteAccount}
+                    placeholder="비밀번호를 입력해주세요"
+                ></Input>
             </Container>
         </>
-    )
+    );
 }
 
 const Container = styled.div`
@@ -42,33 +51,33 @@ const Container = styled.div`
     right: 33px;
     width: 408px;
     height: 146px;
-    background-color: #FFF6EA;
+    background-color: #fff6ea;
     border-radius: 12px;
-    display: ${props => props.display};
+    display: ${(props) => props.display};
     flex-direction: column;
     justify-content: center;
     gap: 15px;
-    border: 1px solid #AD8B73;
+    border: 1px solid #ad8b73;
     align-items: center;
-`
+`;
 
 const Input = styled.input`
-    color: #AD8B73;
+    color: #ad8b73;
     font-size: 30px;
     width: 343px;
     height: 39px;
     border: none;
     border-radius: 12px;
-    background-color: #ECDBC5;
+    background-color: #ecdbc5;
     padding-left: 10px;
-    ::placeholder{
+    ::placeholder {
         font-size: 20px;
-        color: #AD8B73;
+        color: #ad8b73;
         font-family: ${defaultFont};
     }
     outline: none;
     font-family: ${defaultFont};
     font-size: 20px;
-`
+`;
 
 export default Withdrawal;

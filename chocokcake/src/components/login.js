@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import loginDB from "./LoginPage";
 
 const defaultFont = "NeoDunggeunmo";
@@ -8,6 +8,8 @@ const defaultFont = "NeoDunggeunmo";
 function Login() {
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
+
+    const nameInput = useRef();
 
     const LoginPage = () => {
         if (id === "" && pw === "") {
@@ -19,8 +21,20 @@ function Login() {
         }
     };
 
+    const IdEnter = (e) => {
+        if (e.key === "Enter") {
+            nameInput.current.focus();
+        }
+    };
+
     const IdPw = () => {
         loginDB(id, pw)();
+    };
+
+    const PWEnter = (e) => {
+        if (e.key === "Enter") {
+            LoginPage();
+        }
     };
 
     return (
@@ -35,6 +49,7 @@ function Login() {
                         }}
                         maxLength="10"
                         placeholder="아이디를 입력해주세요."
+                        onKeyPress={IdEnter}
                     ></Input>
                     <Input
                         type="password"
@@ -42,6 +57,8 @@ function Login() {
                             setPw(e.target.value);
                         }}
                         placeholder="비밀번호를 입력해주세요."
+                        onKeyPress={PWEnter}
+                        ref={nameInput}
                     ></Input>
                 </Inputs>
                 <Buttons>

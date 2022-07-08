@@ -4,8 +4,10 @@ import Blueberry from "../img/pixelart/cake/blueberry.png";
 import Strawberry from "../img/pixelart/cake/strawberry.png";
 import MintChoco from "../img/pixelart/cake/mintchoco.png";
 import React, { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
-import LetterWriterPage from "./letterWriterPage";
+
+const BASEURL = process.env.REACT_APP_BASE_URL;
 
 function ChoosePage() {
     const [number, setNumber] = useState(1);
@@ -25,6 +27,16 @@ function ChoosePage() {
         setNumber(number - 1);
     };
 
+    const cakeTheme = async () => {
+        await axios.post(
+            `${BASEURL}/cake`,
+            {
+                theme: number,
+            },
+            { headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` } }
+        );
+    };
+
     return (
         <Background>
             <LogoDiv>
@@ -33,13 +45,25 @@ function ChoosePage() {
             <ImgDiv>
                 <SendCake>케이크 만들기</SendCake>
                 <Center>
-                    <LeftButton onClick={left}>▶</LeftButton>
+                    <LeftButton
+                        style={number === 1 ? { color: "#fff6ea" } : { color: "rgb(235, 217, 195)" }}
+                        onClick={left}
+                    >
+                        ▶
+                    </LeftButton>
                     <Cake src={Img[number - 1]} number={number}></Cake>
-                    <RightButton onClick={right}>▶</RightButton>
+                    <RightButton
+                        style={number === 4 ? { color: "#fff6ea" } : { color: "rgb(235, 217, 195)" }}
+                        onClick={right}
+                    >
+                        ▶
+                    </RightButton>
                 </Center>
                 <CakeNumber>{number}/4</CakeNumber>
                 <Link to="/letterOwner" style={{ textDecoration: "none" }}>
-                    <Button number={number}>이 케이크로 하기</Button>
+                    <Button onClick={cakeTheme} number={number}>
+                        이 케이크로 하기
+                    </Button>
                 </Link>
             </ImgDiv>
         </Background>
