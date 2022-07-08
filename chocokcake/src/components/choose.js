@@ -39,7 +39,7 @@ function ChoosePage() {
                 </Center>
                 <CakeNumber>{number}/4</CakeNumber>
                 <Link to="/letterOwner" style={{ textDecoration: "none" }}>
-                    <Button>이 케이크로 하기</Button>
+                    <Button number={number}>이 케이크로 하기</Button>
                 </Link>
             </ImgDiv>
         </Background>
