@@ -11,10 +11,10 @@ function MenuItems({ setClicked, clicked }) {
     const [account, setAccount] = useState(false);
     const [developer, setDeveloper] = useState(false);
     const [withdrawal, setWithdrawal] = useState(false);
- 
+
     return (
         <>
-            <Container display={clicked ? "flex" : "none"} >
+            <Container x={clicked ? 0 : 100} >
                 <MenuButton onClick={() => setClicked(false)}><img src={menuXimg} /></MenuButton>
 
                 <MenuItem onClick={() => setAccount(!account)}>내 계정 <img src={account ? triangle2 : triangle1} /></MenuItem>
@@ -23,7 +23,7 @@ function MenuItems({ setClicked, clicked }) {
                 <MenuItem onClick={() => setDeveloper(!developer)}>초'콕'케이크 개발자 <img src={developer ? triangle2 : triangle1} /></MenuItem>
                 <Developer developer={developer}></Developer>
 
-                <MenuItem onClick={() =>setWithdrawal(!withdrawal)}>계정 탈퇴  <img src={withdrawal ? triangle2 : triangle1} /></MenuItem>
+                <MenuItem onClick={() => setWithdrawal(!withdrawal)}>계정 탈퇴  <img src={withdrawal ? triangle2 : triangle1} /></MenuItem>
                 <Withdrawal withdrawal={withdrawal}></Withdrawal>
             </Container>
         </>
@@ -41,11 +41,13 @@ const Container = styled.div`
     right: 0;
     width: 440px;
     height: calc(100% - 130px);
-    display: ${props => props.display};
+    display:flex;
     flex-direction: column;
     gap: 230px;
     border-left:1px solid #AD8B73;
     border-radius: 15px;
+    transform:  translateX(${props => props.x}%);
+    transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 `
 
 const MenuItem = styled.span`
