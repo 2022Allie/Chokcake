@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-
-
 function Developer({developer}) {
     return (
         <>
@@ -13,7 +11,7 @@ function Developer({developer}) {
 }
 const Container = styled.div`
     position: fixed;
-    top: 480px;
+    top: 450px;
     right: 24px;
     width: 408px;
     height: 100px;

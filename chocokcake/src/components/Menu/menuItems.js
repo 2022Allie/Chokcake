@@ -3,22 +3,28 @@ import styled from "styled-components";
 import menuXimg from "../../img/Icon/MenuX.png"
 import MyAccount from "./myAccount";
 import Developer from "./developer";
+import Withdrawal from "./withdrawal";
 import triangle1 from "../../img/Icon/triangle 1.svg";
 import triangle2 from "../../img/Icon/triangle 2.svg";
 
 function MenuItems({ setClicked, clicked }) {
     const [account, setAccount] = useState(false);
     const [developer, setDeveloper] = useState(false);
-
+    const [withdrawal, setWithdrawal] = useState(false);
+ 
     return (
         <>
             <Container display={clicked ? "flex" : "none"} >
                 <MenuButton onClick={() => setClicked(false)}><img src={menuXimg} /></MenuButton>
+
                 <MenuItem onClick={() => setAccount(!account)}>내 계정 <img src={account ? triangle2 : triangle1} /></MenuItem>
                 <MyAccount account={account}></MyAccount>
+
                 <MenuItem onClick={() => setDeveloper(!developer)}>초'콕'케이크 개발자 <img src={developer ? triangle2 : triangle1} /></MenuItem>
                 <Developer developer={developer}></Developer>
-                <MenuItem onClick={() => alert("아직 구현 중인 기능입니다.")}>계정 탈퇴</MenuItem>
+
+                <MenuItem onClick={() =>setWithdrawal(!withdrawal)}>계정 탈퇴  <img src={withdrawal ? triangle2 : triangle1} /></MenuItem>
+                <Withdrawal withdrawal={withdrawal}></Withdrawal>
             </Container>
         </>
     )
@@ -37,8 +43,9 @@ const Container = styled.div`
     height: calc(100% - 130px);
     display: ${props => props.display};
     flex-direction: column;
-    gap: 250px;
+    gap: 230px;
     border-left:1px solid #AD8B73;
+    border-radius: 15px;
 `
 
 const MenuItem = styled.span`
