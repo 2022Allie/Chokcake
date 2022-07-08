@@ -18,6 +18,7 @@ const loginDB = (id, password) => {
             })
             .catch((err) => {
                 console.log(err);
+                alert("\t로그인 오류\n 아이디와 비밀번호를 다시 입력해주세요");
             });
     };
 };

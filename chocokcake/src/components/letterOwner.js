@@ -130,7 +130,8 @@ const Cake = styled.div`
 `;
 
 const Background = styled.div`
-    width: 100%;
+    width: 100vw;
+    overflow-x: hidden;
     height: 100%;
     background-color: #fff6ea;
 `;

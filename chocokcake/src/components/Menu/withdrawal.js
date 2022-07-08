@@ -11,13 +11,23 @@ function Withdrawal({ withdrawal }) {
 
     const deleteAccount = async (e) => {
         console.log(e);
+        console.log(localStorage.getItem("accessToken"))
         if (e.key === "Enter") {
             try {
-                await axios.delete(`${BASEURL}/account`, {
-                    accoutId: id,
-                    password: password,
-                });
-            } catch (e) {
+                await axios({
+                    method: "delete",
+                    url: `${BASEURL}/account`,
+                    data: {
+                        account_id: id,
+                        password: password
+                    },
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+                    }
+                })
+                window.location.href = "/";
+            }
+            catch (e) {
                 alert("아이디나 비밀번호를 틀리셨습니다.");
             }
         }
