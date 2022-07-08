@@ -1,18 +1,30 @@
 import styled from "styled-components";
 import chococake from "../img/pixelart/cake/chococake.png";
-import React, { useState } from "react";
+import blueberry from "../img/pixelart/cake/blueberry.png";
+import strawberry from "../img/pixelart/cake/strawberry.png";
+import mintchoco from "../img/pixelart/cake/mintchoco.png";
+import React, { useState, useEffect } from "react";
 import xcandle from "../img/pixelart/candle/xcandle.png";
 import { Link } from "react-router-dom";
 import ChooseCandle from "./Modals/candleModal.js";
 import WriteLetter from "./Modals/writeLetterModal.js";
+import axios from "axios";
+
+const BASEURL = process.env.REACT_APP_BASE_URL;
 
 function LetterWriterPage() {
     const [CakeNum, setCakeNum] = useState(1);
     const [candleMd, setCandleMd] = useState(false);
     const [letterMd, setLetterMd] = useState(false);
+    const [maxCakeNum, setMaxNum] = useState(1);
+    const [ownerMonth, setOwnerMonth] = useState(0);
+    const [ownerDate, setOwnerDate] = useState(0);
+    const [owner, setOwner] = useState("이름없음");
+    const [cakeTheme, setCakeTheme] = useState(0);
+    const cakie = [chococake, strawberry, blueberry, mintchoco];
 
     const right = () => {
-        if (CakeNum === 3) {
+        if (CakeNum === maxCakeNum) {
             return;
         }
         setCakeNum(CakeNum + 1);
@@ -25,15 +37,36 @@ function LetterWriterPage() {
         setCakeNum(CakeNum - 1);
     };
 
+    useEffect(() => {
+        const getCakeInfo = async () => {
+            const result = await axios.get(`${BASEURL}/cake/mine`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            });
+            setOwner(result.data.cake_list[0].user_name);
+            setCakeTheme(result.data.cake_list[0].theme - 1);
+            let [y, m, d] = result.data.cake_list[0].birth_day.split("-");
+            setOwnerMonth(m);
+            setOwnerDate(d);
+        };
+        getCakeInfo();
+    }, []);
+
     return (
         <Background>
             <LogoDiv>
-                <Logo>'윤지'님의 초'콕'케이크</Logo>
+                <Logo>'{owner}'님의 초'콕'케이크</Logo>
             </LogoDiv>
             <Section>
-                <Birth>탄생일 : 7월 19일</Birth>
+                <Birth>
+                    탄생일 : {ownerMonth}월 {ownerDate}일
+                </Birth>
                 <Center>
-                    <LeftButton onClick={left}>▶</LeftButton>
+                    <LeftButton
+                        style={CakeNum === 1 ? { color: "#fff6ea" } : { color: "rgb(235, 217, 195)" }}
+                        onClick={left}
+                    >
+                        ▶
+                    </LeftButton>
                     <Cake>
                         <Xcandle1 className="candle" src={xcandle}></Xcandle1>
                         <Xcandle2 className="candle" src={xcandle}></Xcandle2>
@@ -43,11 +76,18 @@ function LetterWriterPage() {
                         <Xcandle6 className="candle" src={xcandle}></Xcandle6>
                         <Xcandle7 className="candle" src={xcandle}></Xcandle7>
                         <Xcandle8 className="candle" src={xcandle}></Xcandle8>
-                        <Img src={chococake}></Img>
+                        <Img src={cakie[cakeTheme]}></Img>
                     </Cake>
-                    <RightButton onClick={right}>▶</RightButton>
+                    <RightButton
+                        style={CakeNum === maxCakeNum ? { color: "#fff6ea" } : { color: "rgb(235, 217, 195)" }}
+                        onClick={right}
+                    >
+                        ▶
+                    </RightButton>
                 </Center>
-                <CakeNumber>{CakeNum}/3</CakeNumber>
+                <CakeNumber>
+                    {CakeNum}/{maxCakeNum}
+                </CakeNumber>
                 <WriteLetterButton onClick={() => setCandleMd(!candleMd)}>초'콕'케이크에 초'콕'하기</WriteLetterButton>
                 {candleMd ? (
                     <ChooseCandle
@@ -183,27 +223,27 @@ const Xcandle1 = styled.img`
     width: 30px;
     height: 110px;
     top: 16px;
-    left: 150px;
+    left: 157px;
 `;
 const Xcandle2 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    left: 256px;
-    bottom: 410px;
+    left: 250px;
+    bottom: 370px;
 `;
 const Xcandle3 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    left: 382px;
-    bottom: 410px;
+    left: 350px;
+    bottom: 370px;
 `;
 const Xcandle4 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    right: 144px;
+    right: 155px;
     top: 16px;
 `;
 
@@ -211,28 +251,28 @@ const Xcandle5 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    left: 94px;
-    top: 205px;
+    left: 92px;
+    top: 209px;
 `;
 const Xcandle6 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    top: 228px;
+    top: 241px;
     left: 210px;
 `;
 const Xcandle7 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    top: 228px;
+    top: 242px;
     left: 390px;
 `;
 const Xcandle8 = styled.img`
     position: absolute;
     width: 30px;
     height: 110px;
-    left: 521px;
+    left: 506px;
     top: 205px;
 `;
 
