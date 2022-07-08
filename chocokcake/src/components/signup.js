@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import * as axios from 'axios';
 
-const defaultFont = "NeoDunggeunmo";
-const BASEURL = "http://15.164.25.254:8080";
+const defaultFont = "NeoDunggeunmo"; 
+const BASEURL = process.env.REACT_APP_BASE_URL;
 
 function Signup() {
     const [id, setId] = useState("");

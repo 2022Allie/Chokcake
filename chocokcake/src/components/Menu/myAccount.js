@@ -13,7 +13,7 @@ function MyAccount ({account}) {
 
 const Container = styled.div`
     position: fixed;
-    top: 200px;
+    top: 180px;
     right: 24px;
     width: 408px;
     height: 146px;
