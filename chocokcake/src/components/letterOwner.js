@@ -44,7 +44,6 @@ function LetterOwnerPage() {
             const result = await axios.get(`${BASEURL}/cake/mine`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             });
-            console.log(result.data.cake_list[0]);
             setOwner(result.data.cake_list[0].user_name);
             setCakeTheme(result.data.cake_list[0].theme - 1);
             let [y, m, d] = result.data.cake_list[0].birth_day.split("-");

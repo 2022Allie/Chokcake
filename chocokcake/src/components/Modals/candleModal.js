@@ -55,6 +55,10 @@ function ChooseCandle({ candleMd, setCandleMd, letterMd, setLetterMd }) {
         setLetterMd(true);
     };
 
+    const backgroundModel = () => {
+        setCandleMd(false);
+    };
+
     const candle = [
         { image: bsred },
         { image: bsorange },
@@ -104,6 +108,7 @@ function ChooseCandle({ candleMd, setCandleMd, letterMd, setLetterMd }) {
 
     return (
         <Background className="back">
+            <Back onClick={backgroundModel}></Back>
             {chooseClicked ? <WriteLetter></WriteLetter> : null}
             <BackTab className="back">
                 <FrontTab className="back">
@@ -131,6 +136,14 @@ const Background = styled.div`
     height: 100vh;
     background-color: black;
     background-color: rgba(0, 0, 0, 0.65);
+    z-index: 99;
+`;
+
+const Back = styled.div`
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
 `;
 
 const BackTab = styled.div`

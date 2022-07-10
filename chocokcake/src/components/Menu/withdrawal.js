@@ -10,8 +10,6 @@ function Withdrawal({ withdrawal }) {
     const [password, setPassword] = useState("");
 
     const deleteAccount = async (e) => {
-        console.log(e);
-        console.log(localStorage.getItem("accessToken"))
         if (e.key === "Enter") {
             try {
                 await axios({
@@ -19,15 +17,15 @@ function Withdrawal({ withdrawal }) {
                     url: `${BASEURL}/account`,
                     data: {
                         account_id: id,
-                        password: password
+                        password: password,
                     },
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem("accessToken")}`
-                    }
-                })
+                        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    },
+                });
                 window.location.href = "/";
-            }
-            catch (e) {
+                alert("회원님의 계정이 정상적으로 탈퇴되었습니다");
+            } catch (e) {
                 alert("아이디나 비밀번호를 틀리셨습니다.");
             }
         }
