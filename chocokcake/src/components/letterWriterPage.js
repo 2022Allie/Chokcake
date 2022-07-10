@@ -21,6 +21,7 @@ function LetterWriterPage() {
     const [ownerDate, setOwnerDate] = useState(0);
     const [owner, setOwner] = useState("이름없음");
     const [cakeTheme, setCakeTheme] = useState(0);
+    const [cakeId, setCakeId] = useState("");
     const cakie = [chococake, strawberry, blueberry, mintchoco];
 
     const right = () => {
@@ -44,6 +45,7 @@ function LetterWriterPage() {
             });
             setOwner(result.data.cake_list[0].user_name);
             setCakeTheme(result.data.cake_list[0].theme - 1);
+            setCakeId(result.data.cake_list[0].id);
             let [y, m, d] = result.data.cake_list[0].birth_day.split("-");
             setOwnerMonth(m);
             setOwnerDate(d);
@@ -88,7 +90,9 @@ function LetterWriterPage() {
                 <CakeNumber>
                     {CakeNum}/{maxCakeNum}
                 </CakeNumber>
-                <WriteLetterButton onClick={() => setCandleMd(!candleMd)}>초'콕'케이크에 초'콕'하기</WriteLetterButton>
+                <WriteLetterButton cakeId={cakeId} cakeTheme={cakeTheme} onClick={() => setCandleMd(!candleMd)}>
+                    초'콕'케이크에 초'콕'하기
+                </WriteLetterButton>
                 {candleMd ? (
                     <ChooseCandle
                         candleMd={candleMd}

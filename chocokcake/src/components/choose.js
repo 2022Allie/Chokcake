@@ -3,7 +3,7 @@ import ChocoCake from "../img/pixelart/cake/chococake.png";
 import Blueberry from "../img/pixelart/cake/blueberry.png";
 import Strawberry from "../img/pixelart/cake/strawberry.png";
 import MintChoco from "../img/pixelart/cake/mintchoco.png";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -12,6 +12,16 @@ const BASEURL = process.env.REACT_APP_BASE_URL;
 function ChoosePage() {
     const [number, setNumber] = useState(1);
     const Img = [ChocoCake, Strawberry, Blueberry, MintChoco];
+
+    useEffect(() => {
+        const getCakeInfo = async () => {
+            const result = await axios.get(`${BASEURL}/cake/mine`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            });
+            if (result.data.cake_list[0].theme !== "") window.location.href = "/letterOwner";
+        };
+        getCakeInfo();
+    }, []);
 
     const right = () => {
         if (number === 4) {
