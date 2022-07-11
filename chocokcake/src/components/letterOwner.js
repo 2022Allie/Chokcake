@@ -10,6 +10,7 @@ import Menu from "./Menu/menu";
 import triangle1 from "../img/Icon/triangle 1.svg";
 import triangle2 from "../img/Icon/triangle 2.svg";
 import axios from "axios";
+import SeeCandle from "./Modals/seeCandleModal";
 
 const BASEURL = process.env.REACT_APP_BASE_URL;
 
@@ -22,6 +23,7 @@ function LetterOwnerPage() {
     const [cakeTheme, setCakeTheme] = useState(0);
     const [ownerMonth, setOwnerMonth] = useState(0);
     const [ownerDate, setOwnerDate] = useState(0);
+    const [candleSee, setCandleSee] = useState(false);
     const Cakie = [ChocoCake, Strawberry, Blueberry, MintChoco];
     const toggle = () => {
         if (writerClicked === false) {
@@ -91,16 +93,17 @@ function LetterOwnerPage() {
                         ▶
                     </LeftButton>
                     <Cake>
-                        <Xcandle1 className="candle" src={xcandle}></Xcandle1>
-                        <Xcandle2 className="candle" src={xcandle}></Xcandle2>
-                        <Xcandle3 className="candle" src={xcandle}></Xcandle3>
-                        <Xcandle4 className="candle" src={xcandle}></Xcandle4>
-                        <Xcandle5 className="candle" src={xcandle}></Xcandle5>
-                        <Xcandle6 className="candle" src={xcandle}></Xcandle6>
-                        <Xcandle7 className="candle" src={xcandle}></Xcandle7>
-                        <Xcandle8 className="candle" src={xcandle}></Xcandle8>
+                        <Xcandle1 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle1>
+                        <Xcandle2 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle2>
+                        <Xcandle3 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle3>
+                        <Xcandle4 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle4>
+                        <Xcandle5 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle5>
+                        <Xcandle6 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle6>
+                        <Xcandle7 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle7>
+                        <Xcandle8 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle8>
                         <Img src={Cakie[cakeTheme]}></Img>
                     </Cake>
+                    {candleSee ? <SeeCandle setCandleSee={setCandleSee}></SeeCandle> : null}
                     <RightButton
                         style={ownerCakeNum === maxCakeNum ? { color: "#fff6ea" } : { color: "rgb(235, 217, 195)" }}
                         onClick={right}
