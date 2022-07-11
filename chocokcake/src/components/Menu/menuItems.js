@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import menuXimg from "../../img/Icon/MenuX.png"
+import menuXimg from "../../img/Icon/MenuX.png";
 import MyAccount from "./myAccount";
 import Developer from "./developer";
 import Withdrawal from "./withdrawal";
@@ -14,59 +14,64 @@ function MenuItems({ setClicked, clicked }) {
 
     return (
         <>
-            <Container x={clicked ? 0 : 100} >
-                <MenuButton onClick={() => setClicked(false)}><img src={menuXimg} /></MenuButton>
+            <Container x={clicked ? 0 : 100}>
+                <MenuButton onClick={() => setClicked(false)}>
+                    <img src={menuXimg} />
+                </MenuButton>
 
-                <MenuItem onClick={() => setAccount(!account)}>내 계정 <img src={account ? triangle2 : triangle1} /></MenuItem>
+                <MenuItem onClick={() => setAccount(!account)}>
+                    내 계정 <img src={account ? triangle2 : triangle1} />
+                </MenuItem>
                 <MyAccount account={account}></MyAccount>
 
-                <MenuItem onClick={() => setDeveloper(!developer)}>초'콕'케이크 개발자 <img src={developer ? triangle2 : triangle1} /></MenuItem>
+                <MenuItem onClick={() => setDeveloper(!developer)}>
+                    초'콕'케이크 개발자 <img src={developer ? triangle2 : triangle1} />
+                </MenuItem>
                 <Developer developer={developer}></Developer>
 
-                <MenuItem onClick={() => setWithdrawal(!withdrawal)}>계정 탈퇴  <img src={withdrawal ? triangle2 : triangle1} /></MenuItem>
+                <MenuItem onClick={() => setWithdrawal(!withdrawal)}>
+                    계정 탈퇴 <img src={withdrawal ? triangle2 : triangle1} />
+                </MenuItem>
                 <Withdrawal withdrawal={withdrawal}></Withdrawal>
             </Container>
         </>
-    )
+    );
 }
-
 
 const Container = styled.div`
     z-index: 2;
     padding-top: 130px;
     padding-left: 28px;
-    background-color: #ECDBC5;
+    background-color: #ecdbc5;
     position: absolute;
     top: 0;
     right: 0;
     width: 440px;
     height: calc(100% - 130px);
-    display:flex;
+    display: flex;
     flex-direction: column;
     gap: 230px;
-    border-left:1px solid #AD8B73;
+    border-left: 1px solid #ad8b73;
     border-radius: 15px;
-    transform:  translateX(${props => props.x}%);
+    transform: translateX(${(props) => props.x}%);
     transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-`
+`;
 
 const MenuItem = styled.span`
-    color: #AD8B73;
+    color: #ad8b73;
     font-size: 30px;
-`
+`;
 
 const MenuButton = styled.button`
     position: fixed;
     top: 27px;
     right: 54px;
     border: none;
-    background-color: #ECDBC5;
+    background-color: #ecdbc5;
     > img {
         width: 45px;
         height: 45px;
     }
-`
-
-
+`;
 
 export default MenuItems;
