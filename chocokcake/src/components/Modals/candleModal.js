@@ -189,9 +189,6 @@ const Candle = styled.div`
     margin-left: 25px;
     margin-top: 15px;
     margin-bottom: 10px;
-    .back {
-        z-index: 4;
-    }
 `;
 
 const ChooseBtn = styled.button`

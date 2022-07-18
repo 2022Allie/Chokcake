@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import loginDB from "./LoginPage";
+import SeeCandle from "./Modals/seeCandleModal";
 
 const defaultFont = "NeoDunggeunmo";
 
@@ -29,6 +30,7 @@ function Login() {
 
     const IdPw = () => {
         loginDB(id, pw)();
+        SeeCandle(id, pw)();
     };
 
     const PWEnter = (e) => {
