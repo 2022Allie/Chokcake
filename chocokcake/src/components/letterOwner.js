@@ -68,6 +68,8 @@ function LetterOwnerPage() {
     const [ownerMonth, setOwnerMonth] = useState(0);
     const [ownerDate, setOwnerDate] = useState(0);
     const [candleSee, setCandleSee] = useState(false);
+    const [cakeNum, setCakeNum] = useState(0);
+    const [currentCandleNum, setCurrentCandleNum] = useState(0);
     const [candleNum, setCandleNum] = useState({
         candle1: 0,
         candle2: 0,
@@ -108,9 +110,19 @@ function LetterOwnerPage() {
             let [y, m, d] = result.data.cake_list[0].birth_day.split("-");
             setOwnerMonth(m);
             setOwnerDate(d);
+            let cakeId = result.data.cake_list[0].id;
+            getCandleInfo(cakeId);
         };
         getCakeInfo();
     }, []);
+
+    const getCandleInfo = async (cakeId) => {
+        const result = await axios.get(`${BASEURL}/cake/${cakeId}/candle`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+        });
+        setMaxCakeNum(parseInt(result.data.candles.length / 8) + 1);
+        setCakeNum(result.data.candles.length);
+    };
 
     const right = () => {
         if (ownerCakeNum === maxCakeNum) {
@@ -185,7 +197,11 @@ function LetterOwnerPage() {
                     <Arrow src={arrowClicked ? triangle2 : triangle1}></Arrow>
                 </Writer>
             </WriterDiv>
-            <WritersTab writerClicked={writerClicked} setWriterClicked={setWriterClicked}></WritersTab>
+            <WritersTab
+                cakeNum={cakeNum}
+                writerClicked={writerClicked}
+                setWriterClicked={setWriterClicked}
+            ></WritersTab>
             <ImgDiv>
                 <Birth>
                     탄생일 : {ownerMonth}월 {ownerDate}일
@@ -201,46 +217,76 @@ function LetterOwnerPage() {
                         <Xcandle1
                             className="candle"
                             src={candle[candle1]}
-                            onClick={() => setCandleSee(true)}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(1);
+                            }}
                         ></Xcandle1>
                         <Xcandle2
                             className="candle"
                             src={candle[candle2]}
-                            onClick={() => setCandleSee(true)}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(2);
+                            }}
                         ></Xcandle2>
                         <Xcandle3
                             className="candle"
                             src={candle[candle3]}
-                            onClick={() => setCandleSee(true)}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(3);
+                            }}
                         ></Xcandle3>
                         <Xcandle4
                             className="candle"
                             src={candle[candle4]}
-                            onClick={() => setCandleSee(true)}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(4);
+                            }}
                         ></Xcandle4>
                         <Xcandle5
                             className="candle"
                             src={candle[candle5]}
-                            onClick={() => setCandleSee(true)}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(5);
+                            }}
                         ></Xcandle5>
                         <Xcandle6
                             className="candle"
                             src={candle[candle6]}
-                            onClick={() => setCandleSee(true)}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(6);
+                            }}
                         ></Xcandle6>
                         <Xcandle7
                             className="candle"
                             src={candle[candle7]}
-                            onClick={() => setCandleSee(true)}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(7);
+                            }}
                         ></Xcandle7>
                         <Xcandle8
                             className="candle"
                             src={candle[candle8]}
-                            onClick={() => setCandleSee(true)}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(8);
+                            }}
                         ></Xcandle8>
                         <Img src={Cakie[cakeTheme]}></Img>
                     </Cake>
-                    {candleSee ? <SeeCandle setCandleSee={setCandleSee}></SeeCandle> : null}
+                    {candleSee ? (
+                        <SeeCandle
+                            ownerCakeNum={ownerCakeNum}
+                            currentCandleNum={currentCandleNum}
+                            setCandleSee={setCandleSee}
+                        ></SeeCandle>
+                    ) : null}
                     <RightButton
                         style={ownerCakeNum === maxCakeNum ? { color: "#fff6ea" } : { color: "rgb(235, 217, 195)" }}
                         onClick={right}

@@ -46,7 +46,7 @@ import bsY from "../../img/pixelart/candle/alphabet/candle-Y.png";
 import bsZ from "../../img/pixelart/candle/alphabet/candle-Z.png";
 import WriteLetter from "./writeLetterModal.js";
 
-function ChooseCandle({ candleMd, setCandleMd, letterMd, setLetterMd }) {
+function ChooseCandle({ candleMd, setCandleMd, letterMd, setLetterMd, setCandleNum }) {
     const [candles, setCandles] = useState("");
     const [chooseClicked, setChooseClicked] = useState(false);
     const choosefuc = () => {
@@ -112,7 +112,7 @@ function ChooseCandle({ candleMd, setCandleMd, letterMd, setLetterMd }) {
             {chooseClicked ? <WriteLetter></WriteLetter> : null}
             <BackTab className="back">
                 <FrontTab className="back">
-                    {candle.map((img) => (
+                    {candle.map((img, index) => (
                         <Candle className="back">
                             <CandleImg src={img.image}></CandleImg>
                         </Candle>

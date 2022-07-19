@@ -5,10 +5,10 @@ import axios from "axios";
 const defaultFont = "NeoDunggeunmo";
 const BASEURL = process.env.REACT_APP_BASE_URL;
 
-function SeeCandle({ setCandleSee }) {
+function SeeCandle({ setCandleSee, ownerCakeNum, currentCandleNum }) {
     const [postman, setPostman] = useState("");
     const [message, setMessage] = useState("");
-    let cakeId = 0;
+    let candleNum = currentCandleNum + (ownerCakeNum - 1) * 8 - 1;
 
     const backgroundModel = () => {
         setCandleSee(false);
@@ -26,17 +26,21 @@ function SeeCandle({ setCandleSee }) {
             const result = await axios.get(`${BASEURL}/cake/mine`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             });
-            cakeId = result.data.cake_list[0].id;
-            watchCandle();
+            let cakeId = result.data.cake_list[0].id;
+            watchCandle(cakeId);
         };
         getCandleInfo();
     }, []);
 
-    const watchCandle = async () => {
+    const watchCandle = async (cakeId) => {
         const result = await axios.get(`${BASEURL}/cake/${cakeId}/candle`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
         });
-        let candleId = result.data.candles[0].id;
+        if (result.data.candles[candleNum] === undefined) {
+            setMessage("편지가 없어요");
+            setPostman("편지가 없어요");
+        }
+        let candleId = result.data.candles[candleNum].id;
         candleInfo(candleId);
     };
 
@@ -52,7 +56,6 @@ function SeeCandle({ setCandleSee }) {
         setMessage(result.data.letter);
         setPostman(result.data.postman);
     };
-
     if (postman === "" || message === "") {
         return <ModalBackground>편지를 로드하는 중...</ModalBackground>;
     }
