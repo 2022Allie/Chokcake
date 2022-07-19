@@ -11,6 +11,50 @@ import triangle1 from "../img/Icon/triangle 1.svg";
 import triangle2 from "../img/Icon/triangle 2.svg";
 import axios from "axios";
 import SeeCandle from "./Modals/seeCandleModal";
+import bsred from "../img/pixelart/candle/Basic/red.png";
+import bsorange from "../img/pixelart/candle/Basic/orange.png";
+import bsyellow from "../img/pixelart/candle/Basic/yellow.png";
+import bsgreen from "../img/pixelart/candle/Basic/green.png";
+import bsblue from "../img/pixelart/candle/Basic/blue.png";
+import bsnavy from "../img/pixelart/candle/Basic/navy.png";
+import bspurple from "../img/pixelart/candle/Basic/purple.png";
+import bsbrown from "../img/pixelart/candle/Basic/brown.png";
+import bsone from "../img/pixelart/candle/Number/one.png";
+import bstwo from "../img/pixelart/candle/Number/two.png";
+import bsthree from "../img/pixelart/candle/Number/three.png";
+import bsfour from "../img/pixelart/candle/Number/four.png";
+import bsfive from "../img/pixelart/candle/Number/five.png";
+import bssix from "../img/pixelart/candle/Number/six.png";
+import bsseven from "../img/pixelart/candle/Number/seven.png";
+import bseight from "../img/pixelart/candle/Number/eight.png";
+import bsnine from "../img/pixelart/candle/Number/nine.png";
+import bszero from "../img/pixelart/candle/Number/zero.png";
+import bsA from "../img/pixelart/candle/alphabet/candle-A.png";
+import bsB from "../img/pixelart/candle/alphabet/candle-B.png";
+import bsC from "../img/pixelart/candle/alphabet/candle-C.png";
+import bsD from "../img/pixelart/candle/alphabet/candle-D.png";
+import bsE from "../img/pixelart/candle/alphabet/candle-E.png";
+import bsF from "../img/pixelart/candle/alphabet/candle-F.png";
+import bsG from "../img/pixelart/candle/alphabet/candle-G.png";
+import bsH from "../img/pixelart/candle/alphabet/candle-H.png";
+import bsI from "../img/pixelart/candle/alphabet/candle-I.png";
+import bsJ from "../img/pixelart/candle/alphabet/candle-J.png";
+import bsK from "../img/pixelart/candle/alphabet/candle-K.png";
+import bsL from "../img/pixelart/candle/alphabet/candle-L.png";
+import bsM from "../img/pixelart/candle/alphabet/candle-M.png";
+import bsN from "../img/pixelart/candle/alphabet/candle-N.png";
+import bsO from "../img/pixelart/candle/alphabet/candle-O.png";
+import bsP from "../img/pixelart/candle/alphabet/candle-P.png";
+import bsQ from "../img/pixelart/candle/alphabet/candle-Q.png";
+import bsR from "../img/pixelart/candle/alphabet/candle-R.png";
+import bsS from "../img/pixelart/candle/alphabet/candle-S.png";
+import bsT from "../img/pixelart/candle/alphabet/candle-T.png";
+import bsU from "../img/pixelart/candle/alphabet/candle-U.png";
+import bsV from "../img/pixelart/candle/alphabet/candle-V.png";
+import bsW from "../img/pixelart/candle/alphabet/candle-W.png";
+import bsX from "../img/pixelart/candle/alphabet/candle-X.png";
+import bsY from "../img/pixelart/candle/alphabet/candle-Y.png";
+import bsZ from "../img/pixelart/candle/alphabet/candle-Z.png";
 
 const BASEURL = process.env.REACT_APP_BASE_URL;
 
@@ -24,6 +68,21 @@ function LetterOwnerPage() {
     const [ownerMonth, setOwnerMonth] = useState(0);
     const [ownerDate, setOwnerDate] = useState(0);
     const [candleSee, setCandleSee] = useState(false);
+    const [cakeNum, setCakeNum] = useState(0);
+    const [currentCandleNum, setCurrentCandleNum] = useState(0);
+    const [candleNum, setCandleNum] = useState({
+        candle1: 0,
+        candle2: 0,
+        candle3: 0,
+        candle4: 0,
+        candle5: 0,
+        candle6: 0,
+        candle7: 0,
+        candle8: 0,
+    });
+
+    const { candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8 } = candleNum;
+
     const Cakie = [ChocoCake, Strawberry, Blueberry, MintChoco];
     const toggle = () => {
         if (writerClicked === false) {
@@ -51,9 +110,19 @@ function LetterOwnerPage() {
             let [y, m, d] = result.data.cake_list[0].birth_day.split("-");
             setOwnerMonth(m);
             setOwnerDate(d);
+            let cakeId = result.data.cake_list[0].id;
+            getCandleInfo(cakeId);
         };
         getCakeInfo();
     }, []);
+
+    const getCandleInfo = async (cakeId) => {
+        const result = await axios.get(`${BASEURL}/cake/${cakeId}/candle`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+        });
+        setMaxCakeNum(parseInt(result.data.candles.length / 8) + 1);
+        setCakeNum(result.data.candles.length);
+    };
 
     const right = () => {
         if (ownerCakeNum === maxCakeNum) {
@@ -69,6 +138,54 @@ function LetterOwnerPage() {
         setOwnerCakeNum(ownerCakeNum - 1);
     };
 
+    const candle = [
+        xcandle,
+        bsred,
+        bsorange,
+        bsyellow,
+        bsgreen,
+        bsblue,
+        bsnavy,
+        bspurple,
+        bsbrown,
+        bsone,
+        bstwo,
+        bsthree,
+        bsfour,
+        bsfive,
+        bssix,
+        bsseven,
+        bseight,
+        bsnine,
+        bszero,
+        bsA,
+        bsB,
+        bsC,
+        bsD,
+        bsE,
+        bsF,
+        bsG,
+        bsH,
+        bsI,
+        bsJ,
+        bsK,
+        bsL,
+        bsM,
+        bsN,
+        bsO,
+        bsP,
+        bsQ,
+        bsR,
+        bsS,
+        bsT,
+        bsU,
+        bsV,
+        bsW,
+        bsX,
+        bsY,
+        bsZ,
+    ];
+
     return (
         <Background>
             <LogoDiv>
@@ -80,7 +197,11 @@ function LetterOwnerPage() {
                     <Arrow src={arrowClicked ? triangle2 : triangle1}></Arrow>
                 </Writer>
             </WriterDiv>
-            <WritersTab writerClicked={writerClicked} setWriterClicked={setWriterClicked}></WritersTab>
+            <WritersTab
+                cakeNum={cakeNum}
+                writerClicked={writerClicked}
+                setWriterClicked={setWriterClicked}
+            ></WritersTab>
             <ImgDiv>
                 <Birth>
                     탄생일 : {ownerMonth}월 {ownerDate}일
@@ -93,17 +214,79 @@ function LetterOwnerPage() {
                         ▶
                     </LeftButton>
                     <Cake>
-                        <Xcandle1 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle1>
-                        <Xcandle2 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle2>
-                        <Xcandle3 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle3>
-                        <Xcandle4 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle4>
-                        <Xcandle5 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle5>
-                        <Xcandle6 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle6>
-                        <Xcandle7 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle7>
-                        <Xcandle8 className="candle" src={xcandle} onClick={() => setCandleSee(true)}></Xcandle8>
+                        <Xcandle1
+                            className="candle"
+                            src={candle[candle1]}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(1);
+                            }}
+                        ></Xcandle1>
+                        <Xcandle2
+                            className="candle"
+                            src={candle[candle2]}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(2);
+                            }}
+                        ></Xcandle2>
+                        <Xcandle3
+                            className="candle"
+                            src={candle[candle3]}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(3);
+                            }}
+                        ></Xcandle3>
+                        <Xcandle4
+                            className="candle"
+                            src={candle[candle4]}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(4);
+                            }}
+                        ></Xcandle4>
+                        <Xcandle5
+                            className="candle"
+                            src={candle[candle5]}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(5);
+                            }}
+                        ></Xcandle5>
+                        <Xcandle6
+                            className="candle"
+                            src={candle[candle6]}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(6);
+                            }}
+                        ></Xcandle6>
+                        <Xcandle7
+                            className="candle"
+                            src={candle[candle7]}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(7);
+                            }}
+                        ></Xcandle7>
+                        <Xcandle8
+                            className="candle"
+                            src={candle[candle8]}
+                            onClick={() => {
+                                setCandleSee(true);
+                                setCurrentCandleNum(8);
+                            }}
+                        ></Xcandle8>
                         <Img src={Cakie[cakeTheme]}></Img>
                     </Cake>
-                    {candleSee ? <SeeCandle setCandleSee={setCandleSee}></SeeCandle> : null}
+                    {candleSee ? (
+                        <SeeCandle
+                            ownerCakeNum={ownerCakeNum}
+                            currentCandleNum={currentCandleNum}
+                            setCandleSee={setCandleSee}
+                        ></SeeCandle>
+                    ) : null}
                     <RightButton
                         style={ownerCakeNum === maxCakeNum ? { color: "#fff6ea" } : { color: "rgb(235, 217, 195)" }}
                         onClick={right}

@@ -70,14 +70,14 @@ function LetterWriterPage() {
                         ▶
                     </LeftButton>
                     <Cake>
-                        <Xcandle1 className="candle" src={xcandle}></Xcandle1>
-                        <Xcandle2 className="candle" src={xcandle}></Xcandle2>
-                        <Xcandle3 className="candle" src={xcandle}></Xcandle3>
-                        <Xcandle4 className="candle" src={xcandle}></Xcandle4>
-                        <Xcandle5 className="candle" src={xcandle}></Xcandle5>
-                        <Xcandle6 className="candle" src={xcandle}></Xcandle6>
-                        <Xcandle7 className="candle" src={xcandle}></Xcandle7>
-                        <Xcandle8 className="candle" src={xcandle}></Xcandle8>
+                        <Xcandle1 className="candle1" src={xcandle}></Xcandle1>
+                        <Xcandle2 className="candle2" src={xcandle}></Xcandle2>
+                        <Xcandle3 className="candle3" src={xcandle}></Xcandle3>
+                        <Xcandle4 className="candle4" src={xcandle}></Xcandle4>
+                        <Xcandle5 className="candle5" src={xcandle}></Xcandle5>
+                        <Xcandle6 className="candle6" src={xcandle}></Xcandle6>
+                        <Xcandle7 className="candle7" src={xcandle}></Xcandle7>
+                        <Xcandle8 className="candle8" src={xcandle}></Xcandle8>
                         <Img src={cakie[cakeTheme]}></Img>
                     </Cake>
                     <RightButton
@@ -227,6 +227,7 @@ const Xcandle1 = styled.img`
     width: 30px;
     height: 110px;
     top: 16px;
+    z-index: 99;
     left: 157px;
 `;
 const Xcandle2 = styled.img`
@@ -234,6 +235,7 @@ const Xcandle2 = styled.img`
     width: 30px;
     height: 110px;
     left: 250px;
+    z-index: 99;
     bottom: 370px;
 `;
 const Xcandle3 = styled.img`
@@ -241,6 +243,7 @@ const Xcandle3 = styled.img`
     width: 30px;
     height: 110px;
     left: 350px;
+    z-index: 99;
     bottom: 370px;
 `;
 const Xcandle4 = styled.img`
@@ -248,6 +251,7 @@ const Xcandle4 = styled.img`
     width: 30px;
     height: 110px;
     right: 155px;
+    z-index: 99;
     top: 16px;
 `;
 
@@ -256,6 +260,7 @@ const Xcandle5 = styled.img`
     width: 30px;
     height: 110px;
     left: 92px;
+    z-index: 99;
     top: 209px;
 `;
 const Xcandle6 = styled.img`
@@ -263,6 +268,7 @@ const Xcandle6 = styled.img`
     width: 30px;
     height: 110px;
     top: 241px;
+    z-index: 99;
     left: 210px;
 `;
 const Xcandle7 = styled.img`
@@ -270,6 +276,7 @@ const Xcandle7 = styled.img`
     width: 30px;
     height: 110px;
     top: 242px;
+    z-index: 99;
     left: 390px;
 `;
 const Xcandle8 = styled.img`
@@ -278,6 +285,7 @@ const Xcandle8 = styled.img`
     height: 110px;
     left: 506px;
     top: 205px;
+    z-index: 99;
 `;
 
 export default LetterWriterPage;

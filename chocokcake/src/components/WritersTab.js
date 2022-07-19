@@ -1,12 +1,37 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
+import Postmans from "./Postmans";
 
-function WritersTab({ writerClicked }) {
+const BASEURL = process.env.REACT_APP_BASE_URL;
+function WritersTab({ writerClicked, cakeNum }) {
+    let candles = [];
+    const [candle, setCandle] = useState("");
+
+    useEffect(() => {
+        const getCakeInfo = async () => {
+            const result = await axios.get(`${BASEURL}/cake/mine`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            });
+            let cakeId = result.data.cake_list[0].id;
+            getCandleInfo(cakeId);
+        };
+        getCakeInfo();
+    }, []);
+
+    const getCandleInfo = async (cakeId) => {
+        const result = await axios.get(`${BASEURL}/cake/${cakeId}/candle`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+        });
+        for (let i = 0; i < result.data.candles.length; i++) {
+            candles.push(result.data.candles[i].postman);
+        }
+        setCandle(candles);
+    };
+
     return (
         <WriterName hidden={writerClicked ? false : true}>
-            <Writers></Writers>
-            <Writers></Writers>
-            <Writers></Writers>
-            <Writers></Writers>
+            <Postmans candle={candle} />
         </WriterName>
     );
 }
@@ -20,6 +45,7 @@ const WriterName = styled.div`
     height: 200px;
     margin-left: 50px;
     border-radius: 10px;
+    color: white;
     background-color: #ecdbc5;
     overflow-x: hidden;
     overflow-y: auto;
@@ -28,18 +54,4 @@ const WriterName = styled.div`
         display: none;
     }
     z-index: 2;
-`;
-
-const Writers = styled.div`
-    display: flex;
-    align-items: center;
-    font-size: 20px;
-    color: white;
-    width: 190px;
-    height: 50px;
-    background-color: #ad8b73;
-    margin-top: 20px;
-    margin-left: 20px;
-    border-radius: 10px;
-    z-index: 3;
 `;
