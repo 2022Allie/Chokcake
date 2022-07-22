@@ -6,7 +6,7 @@ import axios from "axios";
 const defaultFont = "NeoDunggeunmo";
 const BASEURL = process.env.REACT_APP_BASE_URL;
 
-function WriteLetter({ setLetterMd, LetterMd }) {
+function WriteLetter({ setLetterMd, LetterMd, candleTheme }) {
     const [cakeTheme, setCakeTheme] = useState("");
     const [cakeId, setCakeId] = useState("");
     const [letter, setLetter] = useState("");
@@ -17,8 +17,8 @@ function WriteLetter({ setLetterMd, LetterMd }) {
             const result = await axios.get(`${BASEURL}/cake/mine`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             });
-            setCakeTheme(result.data.cake_list[0].theme);
-            setCakeId(result.data.cake_list[0].id);
+            setCakeTheme(result.data.cake_list[result.data.cake_list.length - 1].theme);
+            setCakeId(result.data.cake_list[result.data.cake_list.length - 1].id);
         };
         getCakeInfo();
     }, []);
@@ -36,7 +36,7 @@ function WriteLetter({ setLetterMd, LetterMd }) {
                 method: "post",
                 url: `${BASEURL}/cake/${cakeId}/candle`,
                 data: {
-                    theme: cakeTheme,
+                    theme: candleTheme,
                     postman: postman,
                     letter: letter,
                 },

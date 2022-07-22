@@ -59,7 +59,7 @@ import { Link } from "react-router-dom";
 
 const BASEURL = process.env.REACT_APP_BASE_URL;
 
-function LetterOwnerPage() {
+function LetterHistoryPage({ historyNum }) {
     const [owner, setOwner] = useState("이름없음");
     const [ownerCakeNum, setOwnerCakeNum] = useState(1);
     const [writerClicked, setWriterClicked] = useState(false);
@@ -111,12 +111,12 @@ function LetterOwnerPage() {
                     headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
                 })
                 .then((result) => {
-                    setOwner(result.data.cake_list[result.data.cake_list.length - 1].user_name);
-                    setCakeTheme(result.data.cake_list[result.data.cake_list.length - 1].theme - 1);
-                    let [y, m, d] = result.data.cake_list[result.data.cake_list.length - 1].birth_day.split("-");
+                    setOwner(result.data.cake_list[historyNum].user_name);
+                    setCakeTheme(result.data.cake_list[historyNum].theme - 1);
+                    let [y, m, d] = result.data.cake_list[historyNum].birth_day.split("-");
                     setOwnerMonth(m);
                     setOwnerDate(d);
-                    let cakeId = result.data.cake_list[result.data.cake_list.length - 1].id;
+                    let cakeId = result.data.cake_list[historyNum].id;
                     getCandleInfo(cakeId);
                 })
                 .catch(() => {
@@ -242,6 +242,7 @@ function LetterOwnerPage() {
                 </Writer>
             </WriterDiv>
             <WritersTab
+                historyNum={historyNum}
                 cakeNum={cakeNum}
                 writerClicked={writerClicked}
                 setWriterClicked={setWriterClicked}
@@ -349,7 +350,7 @@ function LetterOwnerPage() {
     );
 }
 
-export default LetterOwnerPage;
+export default LetterHistoryPage;
 
 const Cake = styled.div`
     position: relative;

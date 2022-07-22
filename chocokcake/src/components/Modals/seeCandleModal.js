@@ -26,7 +26,7 @@ function SeeCandle({ setCandleSee, ownerCakeNum, currentCandleNum }) {
             const result = await axios.get(`${BASEURL}/cake/mine`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             });
-            let cakeId = result.data.cake_list[0].id;
+            let cakeId = result.data.cake_list[result.data.cake_list.length - 1].id;
             watchCandle(cakeId);
         };
         getCandleInfo();
