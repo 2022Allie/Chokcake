@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Postmans from "./Postmans";
 
 const BASEURL = process.env.REACT_APP_BASE_URL;
-function WritersTab({ writerClicked, cakeNum }) {
+function WritersTab({ writerClicked, cakeNum, data }) {
     let candles = [];
     const [candle, setCandle] = useState("");
 
@@ -13,7 +13,7 @@ function WritersTab({ writerClicked, cakeNum }) {
             const result = await axios.get(`${BASEURL}/cake/mine`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             });
-            let cakeId = result.data.cake_list[result.data.cake_list.length - 1].id;
+            let cakeId = result.data.cake_list[data].id;
             getCandleInfo(cakeId);
         };
         getCakeInfo();

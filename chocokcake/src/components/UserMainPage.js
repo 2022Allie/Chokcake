@@ -17,6 +17,7 @@ const UserMainPage = () => {
     const [ownerDate, setOwnerDate] = useState(0);
     const [accountId, setAccountId] = useState("");
     const Cakie = [ChocoCake, Strawberry, Blueberry, MintChoco];
+    const [currentCakeNum, setCurrentCakeNum] = useState(0);
 
     useEffect(() => {
         const getCakeInfo = () => {
@@ -38,6 +39,19 @@ const UserMainPage = () => {
         getCakeInfo();
     }, []);
 
+    useEffect(() => {
+        const getCakeInfo = () => {
+            axios
+                .get(`${BASEURL}/cake/mine`, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                })
+                .then((result) => {
+                    setCurrentCakeNum(result.data.cake_list.length - 1);
+                });
+        };
+        getCakeInfo();
+    }, []);
+
     return (
         <>
             <Logo>초‘콕’케이크</Logo>
@@ -54,7 +68,7 @@ const UserMainPage = () => {
                     </InBody>
                     <InBody>
                         <Img1 src={Cakie[cakeTheme]}></Img1>
-                        <Link to="/letterOwner">
+                        <Link to="/letterOwner" state={{ data: currentCakeNum }}>
                             <Button>내 케이크</Button>
                         </Link>
                     </InBody>

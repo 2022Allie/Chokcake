@@ -56,6 +56,7 @@ import bsX from "../img/pixelart/candle/alphabet/candle-X.png";
 import bsY from "../img/pixelart/candle/alphabet/candle-Y.png";
 import bsZ from "../img/pixelart/candle/alphabet/candle-Z.png";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const BASEURL = process.env.REACT_APP_BASE_URL;
 
@@ -104,6 +105,8 @@ function LetterOwnerPage() {
         toggle();
     };
 
+    const data = useLocation().state.data;
+
     useEffect(() => {
         const getCakeInfo = () => {
             axios
@@ -111,12 +114,12 @@ function LetterOwnerPage() {
                     headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
                 })
                 .then((result) => {
-                    setOwner(result.data.cake_list[result.data.cake_list.length - 1].user_name);
-                    setCakeTheme(result.data.cake_list[result.data.cake_list.length - 1].theme - 1);
-                    let [y, m, d] = result.data.cake_list[result.data.cake_list.length - 1].birth_day.split("-");
+                    setOwner(result.data.cake_list[data].user_name);
+                    setCakeTheme(result.data.cake_list[data].theme - 1);
+                    let [y, m, d] = result.data.cake_list[data].birth_day.split("-");
                     setOwnerMonth(m);
                     setOwnerDate(d);
-                    let cakeId = result.data.cake_list[result.data.cake_list.length - 1].id;
+                    let cakeId = result.data.cake_list[data].id;
                     getCandleInfo(cakeId);
                 })
                 .catch(() => {
@@ -242,6 +245,7 @@ function LetterOwnerPage() {
                 </Writer>
             </WriterDiv>
             <WritersTab
+                data={data}
                 cakeNum={cakeNum}
                 writerClicked={writerClicked}
                 setWriterClicked={setWriterClicked}
@@ -326,6 +330,7 @@ function LetterOwnerPage() {
                     </Cake>
                     {candleSee ? (
                         <SeeCandle
+                            data={data}
                             ownerCakeNum={ownerCakeNum}
                             currentCandleNum={currentCandleNum}
                             setCandleSee={setCandleSee}

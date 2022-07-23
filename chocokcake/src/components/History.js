@@ -6,20 +6,18 @@ import { Link } from "react-router-dom";
 
 const BASEURL = process.env.REACT_APP_BASE_URL;
 
-const History = ({ setHistoryNum }) => {
+const History = () => {
     const [owner, setOwner] = useState(0);
     const [accountId, setAccountId] = useState("");
     const [arr, setArr] = useState([]);
 
     useEffect(() => {
-        const getCakeInfo = ({ setHistoryNum }) => {
+        const getCakeInfo = () => {
             axios
                 .get(`${BASEURL}/cake/mine`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
                 })
                 .then((result) => {
-                    console.log(result.data.cake_list);
-                    setHistoryNum(result.data.cake_list.length);
                     setOwner(result.data.cake_list[0].user_name);
                     setArr([...result.data.cake_list]);
                 });
@@ -40,12 +38,6 @@ const History = ({ setHistoryNum }) => {
         getUserInfo();
     }, []);
 
-    const history = (num) => {
-        console.log(num);
-        setHistoryNum(num);
-        window.location.href = "/letterHistory";
-    };
-
     return (
         <>
             <Link to="/usermain">
@@ -57,14 +49,11 @@ const History = ({ setHistoryNum }) => {
                     {arr.map((year, index) => {
                         let [y, m, d] = year.birth_day.split("-");
                         return (
-                            <MyHistory
-                                onClick={() => {
-                                    history(index);
-                                }}
-                                key={index}
-                            >
-                                &nbsp;&nbsp;&nbsp;{y}년 {owner} 님의 케이크
-                            </MyHistory>
+                            <Link to="/letterOwner" state={{ data: index }}>
+                                <MyHistory key={index}>
+                                    &nbsp;&nbsp;&nbsp;{y}년 {owner} 님의 케이크
+                                </MyHistory>
+                            </Link>
                         );
                     })}
                 </Wrapper>
@@ -93,7 +82,7 @@ const Wrapper = styled.div`
     align-items: center;
     width: 1100px;
     height: 600px;
-    background-color: #ad8b73;
+    background-color: #ecdbc5;
     border-radius: 30px;
     margin-top: 100px;
 `;
@@ -103,11 +92,16 @@ const MyHistory = styled.button`
     align-items: center;
     width: 1000px;
     height: 60px;
-    background-color: #ecdbc5;
+    background-color: #fff6ea;
     border-radius: 10px;
     margin-top: 40px;
     border: 0;
     outline: 0;
     font-size: 25px;
     font-family: "NeoDunggeunmo";
+    &:hover {
+        transform: scale(1.05);
+        background-color: #ad8b73;
+        transition: 0.5s;
+    }
 `;

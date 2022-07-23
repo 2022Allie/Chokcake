@@ -11,11 +11,8 @@ import ChooseCandle from "./components/Modals/candleModal";
 import WriteLetter from "./components/Modals/writeLetterModal";
 import UserMainPage from "./components/UserMainPage";
 import History from "./components/History";
-import LetterHistoryPage from "./components/letterHistory";
 
 function App() {
-    const [historyNum, setHistoryNum] = useState(0);
-
     return (
         <BrowserRouter>
             <Routes>
@@ -25,11 +22,7 @@ function App() {
                 <Route path="/signup" element={<Signup></Signup>}></Route>
                 <Route path="/usermain" element={<UserMainPage></UserMainPage>}></Route>
                 <Route path="/choosepage" element={<ChoosePage></ChoosePage>}></Route>
-                <Route path="/history" element={<History setHistoryNum={setHistoryNum}></History>}></Route>
-                <Route
-                    path="/letterHistory"
-                    element={<LetterHistoryPage historyNum={historyNum}></LetterHistoryPage>}
-                ></Route>
+                <Route path="/history" element={<History></History>}></Route>
                 <Route path="/letterOwner" element={<LetterOwnerPage></LetterOwnerPage>}></Route>
                 <Route path="/letterWriter" element={<LetterWriterPage></LetterWriterPage>}></Route>
                 <Route path="/chooseCandle" element={<ChooseCandle></ChooseCandle>}></Route>

@@ -47,7 +47,8 @@ function ChoosePage() {
                 { headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` } }
             )
             .then(() => {
-                window.location.href = "/letterOwner";
+                alert("케이크 생성이 완료되었습니다");
+                window.location.href = "/usermain";
             })
             .catch(() => {
                 alert("케이크는 1번만 생성할 수 있습니다");
