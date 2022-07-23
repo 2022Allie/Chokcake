@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-function MyAccount ({account}) {
-    return(
+function MyAccount({ account, accountId }) {
+    return (
         <>
-            <Container display={account ? "flex" : "none"} >
-                <Text>ID : inung1004</Text>
-                <Text onClick={() =>alert("아직 구현 중인 기능입니다.")}>비밀번호 바꾸기</Text>
+            <Container display={account ? "flex" : "none"}>
+                <Text>ID : {accountId}</Text>
+                <Text onClick={() => alert("아직 구현 중인 기능입니다.")}>비밀번호 바꾸기</Text>
             </Container>
         </>
-    )
+    );
 }
 
 const Container = styled.div`
@@ -17,19 +17,19 @@ const Container = styled.div`
     right: 24px;
     width: 408px;
     height: 146px;
-    background-color: #FFF6EA;
+    background-color: #fff6ea;
     border-radius: 12px;
-    display: ${props => props.display};
+    display: ${(props) => props.display};
     flex-direction: column;
     justify-content: center;
     padding-left: 15px;
     gap: 15px;
-    border: 1px solid #AD8B73;
-`
+    border: 1px solid #ad8b73;
+`;
 
 const Text = styled.span`
-    color: #AD8B73;
+    color: #ad8b73;
     font-size: 30px;
-`
+`;
 
 export default MyAccount;

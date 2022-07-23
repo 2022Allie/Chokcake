@@ -45,9 +45,9 @@ import bsX from "../../img/pixelart/candle/alphabet/candle-X.png";
 import bsY from "../../img/pixelart/candle/alphabet/candle-Y.png";
 import bsZ from "../../img/pixelart/candle/alphabet/candle-Z.png";
 import WriteLetter from "./writeLetterModal.js";
+import SelectCandle from "./selectCandle.js";
 
-function ChooseCandle({ candleMd, setCandleMd, letterMd, setLetterMd, setCandleNum }) {
-    const [candles, setCandles] = useState("");
+function ChooseCandle({ setCandleMd, setLetterMd, setCandleTheme, candleTheme }) {
     const [chooseClicked, setChooseClicked] = useState(false);
     const choosefuc = () => {
         setChooseClicked(true);
@@ -57,6 +57,10 @@ function ChooseCandle({ candleMd, setCandleMd, letterMd, setLetterMd, setCandleN
 
     const backgroundModel = () => {
         setCandleMd(false);
+    };
+
+    const SelectCandle = (index) => {
+        setCandleTheme(index);
     };
 
     const candle = [
@@ -113,8 +117,14 @@ function ChooseCandle({ candleMd, setCandleMd, letterMd, setLetterMd, setCandleN
             <BackTab className="back">
                 <FrontTab className="back">
                     {candle.map((img, index) => (
-                        <Candle className="back">
-                            <CandleImg src={img.image}></CandleImg>
+                        <Candle
+                            onClick={() => {
+                                SelectCandle(index);
+                            }}
+                            background={candleTheme === index ? "#3E2723" : "white"}
+                            className="back"
+                        >
+                            <CandleImg key={index} src={img.image}></CandleImg>
                         </Candle>
                     ))}
                 </FrontTab>
@@ -184,7 +194,7 @@ const Candle = styled.div`
     align-items: center;
     width: 170px;
     height: 230px;
-    background-color: white;
+    background-color: ${(props) => props.background};
     border-radius: 10px;
     margin-left: 25px;
     margin-top: 15px;

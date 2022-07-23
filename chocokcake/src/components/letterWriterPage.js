@@ -4,11 +4,55 @@ import blueberry from "../img/pixelart/cake/blueberry.png";
 import strawberry from "../img/pixelart/cake/strawberry.png";
 import mintchoco from "../img/pixelart/cake/mintchoco.png";
 import React, { useState, useEffect } from "react";
-import xcandle from "../img/pixelart/candle/xcandle.png";
 import { Link } from "react-router-dom";
 import ChooseCandle from "./Modals/candleModal.js";
 import WriteLetter from "./Modals/writeLetterModal.js";
 import axios from "axios";
+import xcandle from "../img/pixelart/candle/xcandle.png";
+import bsred from "../img/pixelart/candle/Basic/red.png";
+import bsorange from "../img/pixelart/candle/Basic/orange.png";
+import bsyellow from "../img/pixelart/candle/Basic/yellow.png";
+import bsgreen from "../img/pixelart/candle/Basic/green.png";
+import bsblue from "../img/pixelart/candle/Basic/blue.png";
+import bsnavy from "../img/pixelart/candle/Basic/navy.png";
+import bspurple from "../img/pixelart/candle/Basic/purple.png";
+import bsbrown from "../img/pixelart/candle/Basic/brown.png";
+import bsone from "../img/pixelart/candle/Number/one.png";
+import bstwo from "../img/pixelart/candle/Number/two.png";
+import bsthree from "../img/pixelart/candle/Number/three.png";
+import bsfour from "../img/pixelart/candle/Number/four.png";
+import bsfive from "../img/pixelart/candle/Number/five.png";
+import bssix from "../img/pixelart/candle/Number/six.png";
+import bsseven from "../img/pixelart/candle/Number/seven.png";
+import bseight from "../img/pixelart/candle/Number/eight.png";
+import bsnine from "../img/pixelart/candle/Number/nine.png";
+import bszero from "../img/pixelart/candle/Number/zero.png";
+import bsA from "../img/pixelart/candle/alphabet/candle-A.png";
+import bsB from "../img/pixelart/candle/alphabet/candle-B.png";
+import bsC from "../img/pixelart/candle/alphabet/candle-C.png";
+import bsD from "../img/pixelart/candle/alphabet/candle-D.png";
+import bsE from "../img/pixelart/candle/alphabet/candle-E.png";
+import bsF from "../img/pixelart/candle/alphabet/candle-F.png";
+import bsG from "../img/pixelart/candle/alphabet/candle-G.png";
+import bsH from "../img/pixelart/candle/alphabet/candle-H.png";
+import bsI from "../img/pixelart/candle/alphabet/candle-I.png";
+import bsJ from "../img/pixelart/candle/alphabet/candle-J.png";
+import bsK from "../img/pixelart/candle/alphabet/candle-K.png";
+import bsL from "../img/pixelart/candle/alphabet/candle-L.png";
+import bsM from "../img/pixelart/candle/alphabet/candle-M.png";
+import bsN from "../img/pixelart/candle/alphabet/candle-N.png";
+import bsO from "../img/pixelart/candle/alphabet/candle-O.png";
+import bsP from "../img/pixelart/candle/alphabet/candle-P.png";
+import bsQ from "../img/pixelart/candle/alphabet/candle-Q.png";
+import bsR from "../img/pixelart/candle/alphabet/candle-R.png";
+import bsS from "../img/pixelart/candle/alphabet/candle-S.png";
+import bsT from "../img/pixelart/candle/alphabet/candle-T.png";
+import bsU from "../img/pixelart/candle/alphabet/candle-U.png";
+import bsV from "../img/pixelart/candle/alphabet/candle-V.png";
+import bsW from "../img/pixelart/candle/alphabet/candle-W.png";
+import bsX from "../img/pixelart/candle/alphabet/candle-X.png";
+import bsY from "../img/pixelart/candle/alphabet/candle-Y.png";
+import bsZ from "../img/pixelart/candle/alphabet/candle-Z.png";
 
 const BASEURL = process.env.REACT_APP_BASE_URL;
 
@@ -16,13 +60,77 @@ function LetterWriterPage() {
     const [CakeNum, setCakeNum] = useState(1);
     const [candleMd, setCandleMd] = useState(false);
     const [letterMd, setLetterMd] = useState(false);
-    const [maxCakeNum, setMaxNum] = useState(1);
+    const [maxCakeNum, setMaxCakeNum] = useState(1);
     const [ownerMonth, setOwnerMonth] = useState(0);
     const [ownerDate, setOwnerDate] = useState(0);
     const [owner, setOwner] = useState("이름없음");
     const [cakeTheme, setCakeTheme] = useState(0);
     const [cakeId, setCakeId] = useState("");
+    const [candleTheme, setCandleTheme] = useState(0);
     const cakie = [chococake, strawberry, blueberry, mintchoco];
+    const [cakeLength, setCakeLength] = useState(0);
+    const [candleNum, setCandleNum] = useState({
+        candle1: 0,
+        candle2: 0,
+        candle3: 0,
+        candle4: 0,
+        candle5: 0,
+        candle6: 0,
+        candle7: 0,
+        candle8: 0,
+    });
+
+    let arr = Array.from({ length: maxCakeNum * 8 }, () => 0);
+
+    const candle = [
+        xcandle,
+        bsred,
+        bsorange,
+        bsyellow,
+        bsgreen,
+        bsblue,
+        bsnavy,
+        bspurple,
+        bsbrown,
+        bsone,
+        bstwo,
+        bsthree,
+        bsfour,
+        bsfive,
+        bssix,
+        bsseven,
+        bseight,
+        bsnine,
+        bszero,
+        bsA,
+        bsB,
+        bsC,
+        bsD,
+        bsE,
+        bsF,
+        bsG,
+        bsH,
+        bsI,
+        bsJ,
+        bsK,
+        bsL,
+        bsM,
+        bsN,
+        bsO,
+        bsP,
+        bsQ,
+        bsR,
+        bsS,
+        bsT,
+        bsU,
+        bsV,
+        bsW,
+        bsX,
+        bsY,
+        bsZ,
+    ];
+
+    const { candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8 } = candleNum;
 
     const right = () => {
         if (CakeNum === maxCakeNum) {
@@ -39,19 +147,50 @@ function LetterWriterPage() {
     };
 
     useEffect(() => {
-        const getCakeInfo = async () => {
-            const result = await axios.get(`${BASEURL}/cake/mine`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
-            });
-            setOwner(result.data.cake_list[0].user_name);
-            setCakeTheme(result.data.cake_list[0].theme - 1);
-            setCakeId(result.data.cake_list[0].id);
-            let [y, m, d] = result.data.cake_list[0].birth_day.split("-");
-            setOwnerMonth(m);
-            setOwnerDate(d);
+        const getCakeInfo = () => {
+            axios
+                .get(`${BASEURL}/cake/mine`, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                })
+                .then((result) => {
+                    setOwner(result.data.cake_list[result.data.cake_list.length - 1].user_name);
+                    setCakeTheme(result.data.cake_list[result.data.cake_list.length - 1].theme - 1);
+                    setCakeId(result.data.cake_list[result.data.cake_list.length - 1].id);
+                    let [y, m, d] = result.data.cake_list[result.data.cake_list.length - 1].birth_day.split("-");
+                    setOwnerMonth(m);
+                    setOwnerDate(d);
+                    let cakeId = result.data.cake_list[result.data.cake_list.length - 1].id;
+                    getCandleInfo(cakeId);
+                });
         };
         getCakeInfo();
-    }, []);
+    }, [CakeNum]);
+
+    const getCandleInfo = (cakeId) => {
+        axios
+            .get(`${BASEURL}/cake/${cakeId}/candle`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            })
+            .then((result) => {
+                setMaxCakeNum(parseInt(result.data.candles.length / 8) + 1);
+                setCakeLength(result.data.candles.length);
+                for (let i = 0; i < result.data.candles.length; i++) {
+                    arr[i] = result.data.candles[i].theme + 1;
+                }
+                const c = {
+                    ...candleNum,
+                    candle1: arr[(CakeNum - 1) * 8],
+                    candle2: arr[(CakeNum - 1) * 8 + 1],
+                    candle3: arr[(CakeNum - 1) * 8 + 2],
+                    candle4: arr[(CakeNum - 1) * 8 + 3],
+                    candle5: arr[(CakeNum - 1) * 8 + 4],
+                    candle6: arr[(CakeNum - 1) * 8 + 5],
+                    candle7: arr[(CakeNum - 1) * 8 + 6],
+                    candle8: arr[(CakeNum - 1) * 8 + 7],
+                };
+                setCandleNum(c);
+            });
+    };
 
     return (
         <Background>
@@ -70,14 +209,14 @@ function LetterWriterPage() {
                         ▶
                     </LeftButton>
                     <Cake>
-                        <Xcandle1 className="candle1" src={xcandle}></Xcandle1>
-                        <Xcandle2 className="candle2" src={xcandle}></Xcandle2>
-                        <Xcandle3 className="candle3" src={xcandle}></Xcandle3>
-                        <Xcandle4 className="candle4" src={xcandle}></Xcandle4>
-                        <Xcandle5 className="candle5" src={xcandle}></Xcandle5>
-                        <Xcandle6 className="candle6" src={xcandle}></Xcandle6>
-                        <Xcandle7 className="candle7" src={xcandle}></Xcandle7>
-                        <Xcandle8 className="candle8" src={xcandle}></Xcandle8>
+                        <Xcandle1 className="candle1" src={candle[candle1]}></Xcandle1>
+                        <Xcandle2 className="candle2" src={candle[candle2]}></Xcandle2>
+                        <Xcandle3 className="candle3" src={candle[candle3]}></Xcandle3>
+                        <Xcandle4 className="candle4" src={candle[candle4]}></Xcandle4>
+                        <Xcandle5 className="candle5" src={candle[candle5]}></Xcandle5>
+                        <Xcandle6 className="candle6" src={candle[candle6]}></Xcandle6>
+                        <Xcandle7 className="candle7" src={candle[candle7]}></Xcandle7>
+                        <Xcandle8 className="candle8" src={candle[candle8]}></Xcandle8>
                         <Img src={cakie[cakeTheme]}></Img>
                     </Cake>
                     <RightButton
@@ -99,9 +238,13 @@ function LetterWriterPage() {
                         setCandleMd={setCandleMd}
                         letterMd={letterMd}
                         setLetterMd={setLetterMd}
+                        setCandleTheme={setCandleTheme}
+                        candleTheme={candleTheme}
                     ></ChooseCandle>
                 ) : null}
-                {letterMd ? <WriteLetter letterMd={letterMd} setLetterMd={setLetterMd}></WriteLetter> : null}
+                {letterMd ? (
+                    <WriteLetter candleTheme={candleTheme} letterMd={letterMd} setLetterMd={setLetterMd}></WriteLetter>
+                ) : null}
                 <Link to="/signup">
                     <MakeCake>나도 초‘콕’케이크 만들러가기</MakeCake>
                 </Link>

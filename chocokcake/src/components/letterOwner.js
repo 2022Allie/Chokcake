@@ -55,6 +55,8 @@ import bsW from "../img/pixelart/candle/alphabet/candle-W.png";
 import bsX from "../img/pixelart/candle/alphabet/candle-X.png";
 import bsY from "../img/pixelart/candle/alphabet/candle-Y.png";
 import bsZ from "../img/pixelart/candle/alphabet/candle-Z.png";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const BASEURL = process.env.REACT_APP_BASE_URL;
 
@@ -70,6 +72,8 @@ function LetterOwnerPage() {
     const [candleSee, setCandleSee] = useState(false);
     const [cakeNum, setCakeNum] = useState(0);
     const [currentCandleNum, setCurrentCandleNum] = useState(0);
+    const [accountId, setAccountId] = useState("");
+
     const [candleNum, setCandleNum] = useState({
         candle1: 0,
         candle2: 0,
@@ -81,8 +85,9 @@ function LetterOwnerPage() {
         candle8: 0,
     });
 
-    const { candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8 } = candleNum;
+    let arr = Array.from({ length: maxCakeNum * 8 }, () => 0);
 
+    const { candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8 } = candleNum;
     const Cakie = [ChocoCake, Strawberry, Blueberry, MintChoco];
     const toggle = () => {
         if (writerClicked === false) {
@@ -100,29 +105,69 @@ function LetterOwnerPage() {
         toggle();
     };
 
+    const data = useLocation().state.data;
+
     useEffect(() => {
-        const getCakeInfo = async () => {
-            const result = await axios.get(`${BASEURL}/cake/mine`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
-            });
-            setOwner(result.data.cake_list[0].user_name);
-            setCakeTheme(result.data.cake_list[0].theme - 1);
-            let [y, m, d] = result.data.cake_list[0].birth_day.split("-");
-            setOwnerMonth(m);
-            setOwnerDate(d);
-            let cakeId = result.data.cake_list[0].id;
-            getCandleInfo(cakeId);
+        const getCakeInfo = () => {
+            axios
+                .get(`${BASEURL}/cake/mine`, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                })
+                .then((result) => {
+                    setOwner(result.data.cake_list[data].user_name);
+                    setCakeTheme(result.data.cake_list[data].theme - 1);
+                    let [y, m, d] = result.data.cake_list[data].birth_day.split("-");
+                    setOwnerMonth(m);
+                    setOwnerDate(d);
+                    let cakeId = result.data.cake_list[data].id;
+                    getCandleInfo(cakeId);
+                })
+                .catch(() => {
+                    window.location.href = "/usermain";
+                    alert("케이크가 없습니다 케이크를 생성하세요");
+                });
         };
         getCakeInfo();
-    }, []);
+    }, [ownerCakeNum]);
 
-    const getCandleInfo = async (cakeId) => {
-        const result = await axios.get(`${BASEURL}/cake/${cakeId}/candle`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
-        });
-        setMaxCakeNum(parseInt(result.data.candles.length / 8) + 1);
-        setCakeNum(result.data.candles.length);
+    const getCandleInfo = (cakeId) => {
+        axios
+            .get(`${BASEURL}/cake/${cakeId}/candle`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+            })
+            .then((result) => {
+                setMaxCakeNum(parseInt(result.data.candles.length / 8) + 1);
+                setCakeNum(result.data.candles.length);
+                for (let i = 0; i < result.data.candles.length; i++) {
+                    arr[i] = result.data.candles[i].theme + 1;
+                }
+                const c = {
+                    ...candleNum,
+                    candle1: arr[(ownerCakeNum - 1) * 8],
+                    candle2: arr[(ownerCakeNum - 1) * 8 + 1],
+                    candle3: arr[(ownerCakeNum - 1) * 8 + 2],
+                    candle4: arr[(ownerCakeNum - 1) * 8 + 3],
+                    candle5: arr[(ownerCakeNum - 1) * 8 + 4],
+                    candle6: arr[(ownerCakeNum - 1) * 8 + 5],
+                    candle7: arr[(ownerCakeNum - 1) * 8 + 6],
+                    candle8: arr[(ownerCakeNum - 1) * 8 + 7],
+                };
+                setCandleNum(c);
+            });
     };
+
+    useEffect(() => {
+        const getUserInfo = () => {
+            axios
+                .get(`${BASEURL}/account/information`, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+                })
+                .then((result) => {
+                    setAccountId(result.data.account_id);
+                });
+        };
+        getUserInfo();
+    }, []);
 
     const right = () => {
         if (ownerCakeNum === maxCakeNum) {
@@ -189,7 +234,9 @@ function LetterOwnerPage() {
     return (
         <Background>
             <LogoDiv>
-                <Logo>초‘콕’케이크</Logo>
+                <Link to="/usermain">
+                    <Logo>초‘콕’케이크</Logo>
+                </Link>
             </LogoDiv>
             <WriterDiv>
                 <Writer onClick={ArrowBtn}>
@@ -198,6 +245,7 @@ function LetterOwnerPage() {
                 </Writer>
             </WriterDiv>
             <WritersTab
+                data={data}
                 cakeNum={cakeNum}
                 writerClicked={writerClicked}
                 setWriterClicked={setWriterClicked}
@@ -282,6 +330,7 @@ function LetterOwnerPage() {
                     </Cake>
                     {candleSee ? (
                         <SeeCandle
+                            data={data}
                             ownerCakeNum={ownerCakeNum}
                             currentCandleNum={currentCandleNum}
                             setCandleSee={setCandleSee}
@@ -300,7 +349,7 @@ function LetterOwnerPage() {
                 <CakeOwner>'{owner}'님의 초‘콕’케이크</CakeOwner>
                 <SendCake>친구에게 초‘콕’케이크 나눠주기</SendCake>
             </ImgDiv>
-            <Menu />
+            <Menu accountId={accountId} />
         </Background>
     );
 }
@@ -443,28 +492,28 @@ const SendCake = styled.button`
 
 const Xcandle1 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     top: 16px;
     left: 157px;
 `;
 const Xcandle2 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     left: 250px;
     bottom: 360px;
 `;
 const Xcandle3 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     left: 350px;
     bottom: 360px;
 `;
 const Xcandle4 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     right: 155px;
     top: 16px;
@@ -472,28 +521,28 @@ const Xcandle4 = styled.img`
 
 const Xcandle5 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     left: 92px;
     top: 209px;
 `;
 const Xcandle6 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     top: 241px;
     left: 210px;
 `;
 const Xcandle7 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     top: 242px;
     left: 390px;
 `;
 const Xcandle8 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     left: 506px;
     top: 205px;

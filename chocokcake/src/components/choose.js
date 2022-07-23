@@ -13,15 +13,15 @@ function ChoosePage() {
     const [number, setNumber] = useState(1);
     const Img = [ChocoCake, Strawberry, Blueberry, MintChoco];
 
-    useEffect(() => {
-        const getCakeInfo = async () => {
-            const result = await axios.get(`${BASEURL}/cake/mine`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
-            });
-            if (result.data.cake_list[0].theme !== "") window.location.href = "/letterOwner";
-        };
-        getCakeInfo();
-    }, []);
+    // useEffect(() => {
+    //     const getCakeInfo = async () => {
+    //         const result = await axios.get(`${BASEURL}/cake/mine`, {
+    //             headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+    //         });
+    //         //if (result.data.cake_list[0].theme !== "") window.location.href = "/letterOwner";
+    //     };
+    //     getCakeInfo();
+    // }, []);
 
     const right = () => {
         if (number === 4) {
@@ -38,19 +38,30 @@ function ChoosePage() {
     };
 
     const cakeTheme = async () => {
-        await axios.post(
-            `${BASEURL}/cake`,
-            {
-                theme: number,
-            },
-            { headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` } }
-        );
+        await axios
+            .post(
+                `${BASEURL}/cake`,
+                {
+                    theme: number,
+                },
+                { headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` } }
+            )
+            .then(() => {
+                alert("케이크 생성이 완료되었습니다");
+                window.location.href = "/usermain";
+            })
+            .catch(() => {
+                alert("케이크는 1번만 생성할 수 있습니다");
+                window.location.href = "/usermain";
+            });
     };
 
     return (
         <Background>
             <LogoDiv>
-                <Logo>초‘콕’케이크</Logo>
+                <Link to="/usermain">
+                    <Logo>초‘콕’케이크</Logo>
+                </Link>
             </LogoDiv>
             <ImgDiv>
                 <SendCake>케이크 만들기</SendCake>
@@ -70,11 +81,9 @@ function ChoosePage() {
                     </RightButton>
                 </Center>
                 <CakeNumber>{number}/4</CakeNumber>
-                <Link to="/letterOwner" style={{ textDecoration: "none" }}>
-                    <Button onClick={cakeTheme} number={number}>
-                        이 케이크로 하기
-                    </Button>
-                </Link>
+                <Button onClick={cakeTheme} number={number}>
+                    이 케이크로 하기
+                </Button>
             </ImgDiv>
         </Background>
     );

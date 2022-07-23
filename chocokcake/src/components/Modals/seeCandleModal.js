@@ -5,7 +5,7 @@ import axios from "axios";
 const defaultFont = "NeoDunggeunmo";
 const BASEURL = process.env.REACT_APP_BASE_URL;
 
-function SeeCandle({ setCandleSee, ownerCakeNum, currentCandleNum }) {
+function SeeCandle({ setCandleSee, ownerCakeNum, currentCandleNum, data }) {
     const [postman, setPostman] = useState("");
     const [message, setMessage] = useState("");
     let candleNum = currentCandleNum + (ownerCakeNum - 1) * 8 - 1;
@@ -26,7 +26,7 @@ function SeeCandle({ setCandleSee, ownerCakeNum, currentCandleNum }) {
             const result = await axios.get(`${BASEURL}/cake/mine`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
             });
-            let cakeId = result.data.cake_list[0].id;
+            let cakeId = result.data.cake_list[data].id;
             watchCandle(cakeId);
         };
         getCandleInfo();

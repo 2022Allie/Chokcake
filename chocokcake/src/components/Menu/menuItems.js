@@ -7,7 +7,7 @@ import Withdrawal from "./withdrawal";
 import triangle1 from "../../img/Icon/triangle 1.svg";
 import triangle2 from "../../img/Icon/triangle 2.svg";
 
-function MenuItems({ setClicked, clicked }) {
+function MenuItems({ setClicked, clicked, accountId }) {
     const [account, setAccount] = useState(false);
     const [developer, setDeveloper] = useState(false);
     const [withdrawal, setWithdrawal] = useState(false);
@@ -22,7 +22,7 @@ function MenuItems({ setClicked, clicked }) {
                 <MenuItem onClick={() => setAccount(!account)}>
                     내 계정 <img src={account ? triangle2 : triangle1} />
                 </MenuItem>
-                <MyAccount account={account}></MyAccount>
+                <MyAccount accountId={accountId} account={account}></MyAccount>
 
                 <MenuItem onClick={() => setDeveloper(!developer)}>
                     초'콕'케이크 개발자 <img src={developer ? triangle2 : triangle1} />

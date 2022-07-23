@@ -1,17 +1,20 @@
-import { useState } from "react"
-import styled from "styled-components"
-import menuimg from "../../img/Icon/Menu.png"
-import MenuItems from "./menuItems"
+import { useState } from "react";
+import styled from "styled-components";
+import menuimg from "../../img/Icon/Menu.png";
+import MenuItems from "./menuItems";
 
-function Menu() {
+function Menu({ accountId }) {
     const [clicked, setClicked] = useState(false);
+    const [accountId1, setAccountId1] = useState("");
 
     return (
         <>
-            <MenuButton onClick={() => setClicked(true)}><img src={menuimg} /></MenuButton>
-            <MenuItems clicked={clicked} setClicked={setClicked} />
+            <MenuButton onClick={() => setClicked(true)}>
+                <img src={menuimg} />
+            </MenuButton>
+            <MenuItems accountId={accountId} clicked={clicked} setClicked={setClicked} />
         </>
-    )
+    );
 }
 
 const MenuButton = styled.button`
@@ -19,11 +22,11 @@ const MenuButton = styled.button`
     top: 27px;
     right: 54px;
     border: none;
-    background-color: #FFF6EA; 
+    background-color: #fff6ea;
     > img {
         width: 45px;
         height: 45px;
     }
-`
+`;
 
 export default Menu;
