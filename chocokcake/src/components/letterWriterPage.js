@@ -4,7 +4,7 @@ import blueberry from "../img/pixelart/cake/blueberry.png";
 import strawberry from "../img/pixelart/cake/strawberry.png";
 import mintchoco from "../img/pixelart/cake/mintchoco.png";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ChooseCandle from "./Modals/candleModal.js";
 import WriteLetter from "./Modals/writeLetterModal.js";
 import axios from "axios";
@@ -82,6 +82,8 @@ function LetterWriterPage() {
 
     let arr = Array.from({ length: maxCakeNum * 8 }, () => 0);
 
+    const { id } = useParams();
+
     const candle = [
         xcandle,
         bsred,
@@ -148,48 +150,42 @@ function LetterWriterPage() {
 
     useEffect(() => {
         const getCakeInfo = () => {
-            axios
-                .get(`${BASEURL}/cake/mine`, {
-                    headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
-                })
-                .then((result) => {
-                    setOwner(result.data.cake_list[result.data.cake_list.length - 1].user_name);
-                    setCakeTheme(result.data.cake_list[result.data.cake_list.length - 1].theme - 1);
-                    setCakeId(result.data.cake_list[result.data.cake_list.length - 1].id);
-                    let [y, m, d] = result.data.cake_list[result.data.cake_list.length - 1].birth_day.split("-");
-                    setOwnerMonth(m);
-                    setOwnerDate(d);
-                    let cakeId = result.data.cake_list[result.data.cake_list.length - 1].id;
-                    getCandleInfo(cakeId);
-                });
+            axios.get(`${BASEURL}/cake/${id}`).then((result) => {
+                console.log(result.data);
+                setOwner(result.data.user_name);
+                setCakeTheme(result.data.theme - 1);
+                setCakeId(result.data.id);
+                let [y, m, d] = result.data.birth_day.split("-");
+                setOwnerMonth(m);
+                setOwnerDate(d);
+                let cakeId = id;
+                getCandleInfo(cakeId);
+            });
         };
         getCakeInfo();
     }, [CakeNum]);
 
     const getCandleInfo = (cakeId) => {
-        axios
-            .get(`${BASEURL}/cake/${cakeId}/candle`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
-            })
-            .then((result) => {
-                setMaxCakeNum(parseInt(result.data.candles.length / 8) + 1);
-                setCakeLength(result.data.candles.length);
-                for (let i = 0; i < result.data.candles.length; i++) {
-                    arr[i] = result.data.candles[i].theme + 1;
-                }
-                const c = {
-                    ...candleNum,
-                    candle1: arr[(CakeNum - 1) * 8],
-                    candle2: arr[(CakeNum - 1) * 8 + 1],
-                    candle3: arr[(CakeNum - 1) * 8 + 2],
-                    candle4: arr[(CakeNum - 1) * 8 + 3],
-                    candle5: arr[(CakeNum - 1) * 8 + 4],
-                    candle6: arr[(CakeNum - 1) * 8 + 5],
-                    candle7: arr[(CakeNum - 1) * 8 + 6],
-                    candle8: arr[(CakeNum - 1) * 8 + 7],
-                };
-                setCandleNum(c);
-            });
+        axios.get(`${BASEURL}/cake/${cakeId}/candle`).then((result) => {
+            console.log(result);
+            setMaxCakeNum(parseInt(result.data.candles.length / 8) + 1);
+            setCakeLength(result.data.candles.length);
+            for (let i = 0; i < result.data.candles.length; i++) {
+                arr[i] = result.data.candles[i].theme + 1;
+            }
+            const c = {
+                ...candleNum,
+                candle1: arr[(CakeNum - 1) * 8],
+                candle2: arr[(CakeNum - 1) * 8 + 1],
+                candle3: arr[(CakeNum - 1) * 8 + 2],
+                candle4: arr[(CakeNum - 1) * 8 + 3],
+                candle5: arr[(CakeNum - 1) * 8 + 4],
+                candle6: arr[(CakeNum - 1) * 8 + 5],
+                candle7: arr[(CakeNum - 1) * 8 + 6],
+                candle8: arr[(CakeNum - 1) * 8 + 7],
+            };
+            setCandleNum(c);
+        });
     };
 
     return (

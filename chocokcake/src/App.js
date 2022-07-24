@@ -24,7 +24,7 @@ function App() {
                 <Route path="/choosepage" element={<ChoosePage></ChoosePage>}></Route>
                 <Route path="/history" element={<History></History>}></Route>
                 <Route path="/letterOwner" element={<LetterOwnerPage></LetterOwnerPage>}></Route>
-                <Route path="/letterWriter" element={<LetterWriterPage></LetterWriterPage>}></Route>
+                <Route path="/letterWriter/:id" element={<LetterWriterPage></LetterWriterPage>}></Route>
                 <Route path="/chooseCandle" element={<ChooseCandle></ChooseCandle>}></Route>
                 <Route path="/writerLetter" element={<WriteLetter></WriteLetter>}></Route>
             </Routes>

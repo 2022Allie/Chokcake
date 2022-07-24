@@ -73,6 +73,7 @@ function LetterOwnerPage() {
     const [cakeNum, setCakeNum] = useState(0);
     const [currentCandleNum, setCurrentCandleNum] = useState(0);
     const [accountId, setAccountId] = useState("");
+    const [cakId, setCakId] = useState(0);
 
     const [candleNum, setCandleNum] = useState({
         candle1: 0,
@@ -119,6 +120,7 @@ function LetterOwnerPage() {
                     let [y, m, d] = result.data.cake_list[data].birth_day.split("-");
                     setOwnerMonth(m);
                     setOwnerDate(d);
+                    setCakId(result.data.cake_list[data].id);
                     let cakeId = result.data.cake_list[data].id;
                     getCandleInfo(cakeId);
                 })
@@ -181,6 +183,21 @@ function LetterOwnerPage() {
             return;
         }
         setOwnerCakeNum(ownerCakeNum - 1);
+    };
+
+    const copyLink = () => {
+        // 흐음 1.
+        if (navigator.clipboard) {
+            // (IE는 사용 못하고, 크롬은 66버전 이상일때 사용 가능합니다.)
+            navigator.clipboard
+                .writeText(`http://{BASEURL}/letterWriter/${cakId}`)
+                .then(() => {
+                    alert("클립보드에 복사되었습니다.");
+                })
+                .catch(() => {
+                    alert("복사를 다시 시도해주세요.");
+                });
+        }
     };
 
     const candle = [
@@ -347,7 +364,7 @@ function LetterOwnerPage() {
                     {ownerCakeNum}/{maxCakeNum}
                 </CakeNumber>
                 <CakeOwner>'{owner}'님의 초‘콕’케이크</CakeOwner>
-                <SendCake>친구에게 초‘콕’케이크 나눠주기</SendCake>
+                <SendCake onClick={() => copyLink()}>친구에게 초‘콕’케이크 나눠주기</SendCake>
             </ImgDiv>
             <Menu accountId={accountId} />
         </Background>
