@@ -363,7 +363,7 @@ const MakeCake = styled.button`
 
 const Xcandle1 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     top: 16px;
     z-index: 99;
@@ -371,7 +371,7 @@ const Xcandle1 = styled.img`
 `;
 const Xcandle2 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     left: 250px;
     z-index: 99;
@@ -379,7 +379,7 @@ const Xcandle2 = styled.img`
 `;
 const Xcandle3 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     left: 350px;
     z-index: 99;
@@ -387,7 +387,7 @@ const Xcandle3 = styled.img`
 `;
 const Xcandle4 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     right: 155px;
     z-index: 99;
@@ -396,7 +396,7 @@ const Xcandle4 = styled.img`
 
 const Xcandle5 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     left: 92px;
     z-index: 99;
@@ -404,7 +404,7 @@ const Xcandle5 = styled.img`
 `;
 const Xcandle6 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     top: 241px;
     z-index: 99;
@@ -412,7 +412,7 @@ const Xcandle6 = styled.img`
 `;
 const Xcandle7 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     top: 242px;
     z-index: 99;
@@ -420,7 +420,7 @@ const Xcandle7 = styled.img`
 `;
 const Xcandle8 = styled.img`
     position: absolute;
-    width: 30px;
+    min-width: 30px;
     height: 110px;
     left: 506px;
     top: 205px;
