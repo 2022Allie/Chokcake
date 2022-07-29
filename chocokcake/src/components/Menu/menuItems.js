@@ -18,7 +18,6 @@ function MenuItems({ setClicked, clicked, accountId }) {
                 <MenuButton onClick={() => setClicked(false)}>
                     <img src={menuXimg} />
                 </MenuButton>
-
                 <MenuItem onClick={() => setAccount(!account)}>
                     내 계정 <img src={account ? triangle2 : triangle1} />
                 </MenuItem>
